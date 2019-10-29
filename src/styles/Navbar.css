@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+.navbar-brand .nav-link {
+  color: #ffffff;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold";
+  font-size: 40px;
+}
+
+.custom-nav-text {
+  text-decoration: none;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 30px;
+}
+
+.nav-bg-custom {
+  background-color: black;
+}
+
+.navbar-dark .navbar-nav > .nav-item > .active {
+  color: white; /* <—– change your color here*/
+  text-decoration-line: underline;
+}
+
+.navbar-dark .navbar-nav > .nav-item > a:hover {
+  color: #ffee00;
+}
+
+.navbar-dark .navbar-nav > .nav-item > a {
+  color: #ffffff; /* <—– change your color here*/
+}
+.navBar-container {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
