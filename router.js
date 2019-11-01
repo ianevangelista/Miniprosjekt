@@ -9,7 +9,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) ORDER BY tidspunkt DESC LIMIT 17",
+          "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) ORDER BY tidspunkt DESC LIMIT 22",
 
           (err, rows) => {
             connection.release();
@@ -36,7 +36,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 2 ORDER BY tidspunkt DESC LIMIT 17",
+          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 2 ORDER BY tidspunkt DESC LIMIT 21",
 
           (err, rows) => {
             connection.release();
@@ -63,7 +63,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 1 ORDER BY sak_id DESC LIMIT 17",
+          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 1 ORDER BY sak_id DESC LIMIT 21",
 
           (err, rows) => {
             connection.release();

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/stylesheet.css";
 import Navbar from "../components/Navbar.js";
-import BigNews from "../components/BigNews.js";
+import BigNews from "../components/BreakingNews.js";
 import LiveFeed from "../components/LiveFeed";
 import Footer from "../components/Footer.js";
 

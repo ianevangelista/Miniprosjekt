@@ -10,7 +10,7 @@ export default class Navbar extends Component {
         role="navigation"
       >
         <a class="navbar-brand">
-          <NavLink className="nav-link" exact to="/sak">
+          <NavLink className="nav-link" exact to="">
             LOGO
           </NavLink>
         </a>
@@ -26,7 +26,7 @@ export default class Navbar extends Component {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav mx-auto">
             <li class="nav-item custom-nav-text mr-5 my-auto">
-              <NavLink className="nav-link" exact to="/sak">
+              <NavLink className="nav-link" exact to="">
                 FORSIDE
               </NavLink>
             </li>
@@ -51,9 +51,9 @@ export default class Navbar extends Component {
                 <NavLink class="dropdown-item" exact to="/sport">
                   Sport
                 </NavLink>
-                <a class="dropdown-item" exact to="/kultur">
+                <NavLink class="dropdown-item" exact to="/kultur">
                   Kultur
-                </a>
+                </NavLink>
               </div>
             </li>
           </ul>

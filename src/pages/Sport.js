@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import "../styles/stylesheet.css";
 import Navbar from "../components/Navbar.js";
 import News from "../components/News.js";
 import Card from "../components/Card";
-import Row from "../components/Row";
-import Column from "../components/Column";
 import LiveFeed from "../components/LiveFeed";
 import Footer from "../components/Footer.js";
 import Sak from "../components/Sak";

@@ -2,18 +2,67 @@ import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
 import axios from "axios";
+import {
+  Container,
+  ButtonDropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle
+} from "reactstrap";
 
 export default class Register extends Component {
   constructor(props) {
     super(props);
+    this.toggle = this.toggle.bind(this);
+    this.select = this.select.bind(this);
+    this.toggleImportancy = this.toggleImportancy.bind(this);
+    this.selectImportancy = this.selectImportancy.bind(this);
 
     this.state = {
       overskrift: "",
       innhold: "",
       bilde: "",
       kategori_id: "",
-      viktighet: ""
+      viktighet: "",
+
+      dropdownOpen: false,
+      dropdownOpenImportancy: false,
+      valueCategory: "Kategori",
+      dropdownOpenImportancy: false,
+      valueImportancy: "Viktighet (Høy: 1 Lav: 2)"
     };
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  toggleImportancy() {
+    this.setState({
+      dropdownOpenImportancy: !this.state.dropdownOpenImportancy
+    });
+  }
+
+  select(event) {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+      valueCategory: event.target.innerText
+    });
+    this.setState({
+      kategori_id: checkCategory(event.target.innerText)
+    });
+  }
+
+  selectImportancy(event) {
+    this.setState({
+      dropdownOpenImportancy: !this.state.dropdownOpenImportancy,
+      valueImportancy: event.target.innerText
+    });
+    this.setState({
+      viktighet: event.target.innerText
+    });
   }
 
   changeHandler = e => {
@@ -32,7 +81,7 @@ export default class Register extends Component {
         console.log(error);
       });
     showAlert();
-    window.location.hash = "/sak";
+    window.location.hash = "";
   };
 
   render() {
@@ -85,30 +134,31 @@ export default class Register extends Component {
             ></input>
           </div>
           <div class="form-group mx-5">
-            <label>Kategori</label>
-            <input
-              type="number"
-              min="1"
-              max="2"
-              name="kategori_id"
-              value={kategori_id}
-              onChange={this.changeHandler}
-              class="form-control"
-              placeholder="Skriv inn kategori-id til din sak"
-            ></input>
+            <ButtonDropdown
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggle}
+            >
+              <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
+              <DropdownMenu onClick={this.select} onChange={this.changeHandler}>
+                <DropdownItem>Kultur</DropdownItem>
+                <DropdownItem>Sport</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
           </div>
           <div class="form-group mx-5">
-            <label>Viktighet</label>
-            <input
-              type="number"
-              min="1"
-              max="2"
-              name="viktighet"
-              value={viktighet}
-              onChange={this.changeHandler}
-              class="form-control"
-              placeholder="Skriv inn viktighet av din sak"
-            ></input>
+            <ButtonDropdown
+              isOpen={this.state.dropdownOpenImportancy}
+              toggle={this.toggleImportancy}
+            >
+              <DropdownToggle>{this.state.valueImportancy}</DropdownToggle>
+              <DropdownMenu
+                onClick={this.selectImportancy}
+                onChange={this.changeHandler}
+              >
+                <DropdownItem>1</DropdownItem>
+                <DropdownItem>2</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
           </div>
 
           <button type="submit" class="btn btn-primary mx-5">
@@ -122,4 +172,10 @@ export default class Register extends Component {
 }
 function showAlert() {
   alert("Saken er registrert");
+}
+
+function checkCategory(category: string) {
+  if (category == "Kultur") return 1;
+  else if (category == "Sport") return 2;
+  else return null;
 }

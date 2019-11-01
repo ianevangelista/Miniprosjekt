@@ -1,19 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Sak from "./Sak";
+import { NavLink } from "react-router-dom";
 
 export default class News extends Component<{
   title?: string,
   src?: string,
   alt?: string,
-  href?: string
+  id?: string,
+  bgColor?: string
 }> {
   render() {
     return (
       <div className="col-sm-">
-        <Link className="text-body" exact to={this.props.href}>
+        <NavLink
+          className="text-body nav-link"
+          exact
+          to={"/sak/" + this.props.id}
+        >
           <div
-            className="card mx-auto bg-danger border-0"
+            className={"card mx-auto bg-" + this.props.bgColor + " border-0"}
             style={{ width: "auto", minHeight: "28rem" }}
           >
             <div>
@@ -27,7 +31,7 @@ export default class News extends Component<{
               <h2 className="text-center">{this.props.title}</h2>
             </div>
           </div>
-        </Link>
+        </NavLink>
       </div>
     );
   }
