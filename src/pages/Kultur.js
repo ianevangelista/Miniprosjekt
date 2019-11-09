@@ -44,7 +44,7 @@ export default class Kultur extends Component {
         <div className="home-container bg-light ">
           <Navbar />
           <LiveFeed />
-          <div className="row justify-content-center align-items-center">
+          <div className="card-columns mx-5">
             {news.map(news => newsCard(news))}
           </div>
           <Footer />
@@ -55,14 +55,12 @@ export default class Kultur extends Component {
 }
 function newsCard(news: Sak) {
   return (
-    <Card cardSize="25">
-      <News
-        title={news.overskrift}
-        src={news.bilde}
-        alt="Alt tekst"
-        href="#"
-        colSize="4"
-      ></News>
-    </Card>
+    <News
+      title={news.overskrift}
+      src={news.bilde}
+      alt="Alt tekst"
+      id={news.sak_id}
+      lastUpdate={news.tidspunkt}
+    ></News>
   );
 }

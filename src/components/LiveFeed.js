@@ -16,7 +16,7 @@ export default class LiveFeed extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:8000/sak")
+      .get("http://localhost:8000/sisteNyheter")
       .then(response => {
         console.log(response);
         this.setState({ news: response.data });
@@ -36,9 +36,11 @@ export default class LiveFeed extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div class="marquee">
-          <div>SISTE NYTT</div>
-          <p>{news.map(news => getLatestNews(news))}</p>
+        <div className="marquee">
+          <div className="bg-dark">SISTE NYTT</div>
+          <p className="h-5 text-uppercase">
+            {news.map(news => getLatestNews(news))}
+          </p>
         </div>
       );
     }
@@ -48,7 +50,7 @@ export default class LiveFeed extends Component {
 function getLatestNews(news: Sak) {
   return (
     <NavLink className="marquee" exact to={"/sak/" + news.sak_id}>
-      <a style={{ marginRight: "10rem" }}>{news.overskrift} </a>
+      <a style={{ marginRight: "6rem" }}>{news.overskrift}</a>
     </NavLink>
   );
 }

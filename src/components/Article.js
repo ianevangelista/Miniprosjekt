@@ -22,6 +22,7 @@ export default class Article extends Component<{
   }
 
   componentDidMount() {
+    console.log(this.props.match.params.id);
     axios
       .get("http://localhost:8000/sak/" + this.props.match.params.id)
       .then(response => {
@@ -46,24 +47,32 @@ export default class Article extends Component<{
         <div className="home-container bg-light">
           <Navbar />
           <div className="row justify-content-center align-items-center">
-            <Card cardSize="75">
+            <Card cardSize="50">
               <div className="row justify-content-center align-items-center">
                 <img className="img-fluid" src={news.bilde}></img>
-                <div className="text-box">
-                  <h1>{this.state.news.overskrift}</h1>
+                <div className="text-box mx-5">
+                  <p className="text-center h1">{news.overskrift}</p>
                   <br />
-                  <p id="info-text">
-                    Av KASPER VEDAL GUNDERSEN | 22.10.2019 | 15:53
+                  <p id="info-text" className="text-center">
+                    Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
+                    {stringifyTime(news.tidspunkt)}
                   </p>
                   <br />
-                  <p className="mx-auto">
-                    NEW YORK (IrishMedia): Det kontroversielle bildet ble delt
-                    på Twitter i helgen, og viser Donald Trump som blir drept av
-                    hælen til Nancy Pelosi.
+                  <p className="content-custom">
+                    TRONDHEIM (Ian Evangelista): {news.innhold}
                   </p>
                 </div>
               </div>
-              <ArticleEdit articleId={articleId} />
+              <div className="my-3">
+                <ArticleEdit
+                  articleId={articleId}
+                  articleTitle={news.overskrift}
+                  articleContent={news.innhold}
+                  articleImg={news.bilde}
+                  articleCategory={news.kategori_navn}
+                  articleImportancy={news.viktighet}
+                />
+              </div>
               <ArticleDelete articleId={articleId} />
             </Card>
           </div>
@@ -72,4 +81,12 @@ export default class Article extends Component<{
       );
     }
   }
+}
+
+function stringifyDate(date: String) {
+  return date.slice(0, 10);
+}
+
+function stringifyTime(date: String) {
+  return date.slice(11, 16);
 }

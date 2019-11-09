@@ -1,15 +1,19 @@
-#image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
+#image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
-.text-box{
-    margin-left: 20%;
-    margin-right: 20%;
+.text-box {
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
-#info-text{
-    color: red;
+#info-text {
+  color: red;
+}
+
+.content-custom {
+  line-height: 2rem;
 }

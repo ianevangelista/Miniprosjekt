@@ -14,6 +14,10 @@ import {
   DropdownItem,
   DropdownToggle
 } from "reactstrap";
+import { createHashHistory } from "history";
+
+// Use history.push(...) to programmatically change path, for instance after successfully editing an article
+const history = createHashHistory();
 
 export default class ArticleEdit extends Component<{
   articleId?: number
@@ -29,7 +33,7 @@ export default class ArticleEdit extends Component<{
         console.log(error);
       });
     showAlert();
-    window.location.hash = "";
+    history.push("");
   };
 
   render() {

@@ -26,6 +26,32 @@ module.exports = function(app, pool) {
     });
   });
 
+  app.get("/sisteNyheter", (req, res) => {
+    console.log("Fikk request fra klient");
+    pool.getConnection((err, connection) => {
+      console.log("Connected to database");
+      if (err) {
+        console.log("Feil ved kobling til databasen");
+        res.json({ error: "feil ved ved oppkobling" });
+      } else {
+        connection.query(
+          "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
+
+          (err, rows) => {
+            connection.release();
+            if (err) {
+              console.log(err);
+              res.json({ error: "error querying" });
+            } else {
+              console.log(rows);
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  });
+
   // Henter ut sport-sakene
   app.get("/sport", (req, res) => {
     console.log("Fikk request fra klient");
@@ -63,7 +89,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 1 ORDER BY sak_id DESC LIMIT 21",
+          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = 1 ORDER BY tidspunkt DESC LIMIT 21",
 
           (err, rows) => {
             connection.release();
@@ -90,8 +116,36 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn from sak join kategori using(kategori_id) where sak_id = ?",
+          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) where sak_id = ?",
           req.params.sak_id,
+
+          (err, rows) => {
+            connection.release();
+            if (err) {
+              console.log(err);
+              res.json({ error: "error querying" });
+            } else {
+              console.log(rows);
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  });
+
+  // Henter ut bestemte saker på bakgrunn av overskrift
+  app.get("/sok/:overskrift", (req, res) => {
+    console.log("Fikk request fra klient");
+    pool.getConnection((err, connection) => {
+      console.log("Connected to database");
+      if (err) {
+        console.log("Feil ved kobling til databasen");
+        res.json({ error: "feil ved ved oppkobling" });
+      } else {
+        connection.query(
+          "SELECT * from sak WHERE overskrift like ? LIMIT 3",
+          "%" + req.params.overskrift + "%",
 
           (err, rows) => {
             connection.release();

@@ -57,18 +57,19 @@ export default class BreakingNews extends Component {
       var headline = importantNews[0];
       importantNews.shift();
       return (
-        <div className="row justify-content-center align-items-center">
-          <Card cardSize="75">
-            <Row>
-              <News
-                title={headline.overskrift}
-                src={headline.bilde}
-                bgColor="danger"
-                id={headline.sak_id}
-              />
-            </Row>
-          </Card>
-          {importantNews.map(news => newsCard(news))}
+        <div>
+          <div className="row justify-content-center align-items-center">
+            <News
+              title={headline.overskrift}
+              src={headline.bilde}
+              bgColor="danger"
+              id={headline.sak_id}
+              lastUpdate={headline.tidspunkt}
+            />
+          </div>
+          <div className="card-columns mx-5">
+            {importantNews.map(news => newsCard(news))}
+          </div>
         </div>
       );
     }
@@ -76,14 +77,12 @@ export default class BreakingNews extends Component {
 }
 function newsCard(news: Sak) {
   return (
-    <Card cardSize="25">
-      <News
-        title={news.overskrift}
-        src={news.bilde}
-        alt="Alt tekst"
-        id={news.sak_id}
-        colSize="4"
-      ></News>
-    </Card>
+    <News
+      title={news.overskrift}
+      src={news.bilde}
+      alt="Alt tekst"
+      id={news.sak_id}
+      lastUpdate={news.tidspunkt}
+    ></News>
   );
 }

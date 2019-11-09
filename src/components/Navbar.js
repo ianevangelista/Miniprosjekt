@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Search from "./Search";
 import "../styles/Navbar.css";
 
 export default class Navbar extends Component {
   render() {
     return (
       <nav
-        class="navbar navbar-expand-md navbar-dark nav-bg-custom sticky-top"
+        class="navbar navbar-expand-md navbar-dark bg-primary sticky-top"
         role="navigation"
       >
-        <a class="navbar-brand">
+        <a class="navbar-brand shadow rounded">
           <NavLink className="nav-link" exact to="">
-            LOGO
+            THE TIMES
           </NavLink>
         </a>
         <button
@@ -24,20 +25,20 @@ export default class Navbar extends Component {
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav mx-auto">
-            <li class="nav-item custom-nav-text mr-5 my-auto">
-              <NavLink className="nav-link" exact to="">
+          <ul class="nav navbar-nav">
+            <li class="nav-item custom-nav-text mr-4 my-auto">
+              <NavLink className="nav-link shadow rounded" exact to="">
                 FORSIDE
               </NavLink>
             </li>
-            <li class="nav-item custom-nav-text mr-5 my-auto">
-              <NavLink className="nav-link" exact to="/register">
-                REGISTRER
+            <li class="nav-item custom-nav-text mr-4 my-auto">
+              <NavLink className="nav-link shadow rounded" exact to="/register">
+                NY SAK
               </NavLink>
             </li>
-            <li class="nav-item custom-nav-text mr-5 my-auto dropdown show">
+            <li class="nav-item custom-nav-text mr-4 my-auto dropdown show">
               <NavLink
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle shadow rounded"
                 exact
                 to="/sport"
                 id="dropdownMenuLink"
@@ -57,6 +58,7 @@ export default class Navbar extends Component {
               </div>
             </li>
           </ul>
+          <Search />
         </div>
       </nav>
     );
