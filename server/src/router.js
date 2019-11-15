@@ -9,7 +9,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) where viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
+          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
 
           (err, rows) => {
             connection.release();
@@ -35,7 +35,33 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
+          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
+
+          (err, rows) => {
+            connection.release();
+            if (err) {
+              console.log(err);
+              res.json({ error: "error querying" });
+            } else {
+              console.log(rows);
+              res.json(rows);
+            }
+          }
+        );
+      }
+    });
+  });
+
+  app.get("/kategori", (req, res) => {
+    console.log("Fikk request fra klient");
+    pool.getConnection((err, connection) => {
+      console.log("Connected to database");
+      if (err) {
+        console.log("Feil ved kobling til databasen");
+        res.json({ error: "feil ved ved oppkobling" });
+      } else {
+        connection.query(
+          "SELECT * from kategori ORDER BY kategori_id ASC",
 
           (err, rows) => {
             connection.release();
@@ -62,7 +88,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
+          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak join kategori USING(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
           req.params.id,
 
           (err, rows) => {
@@ -90,7 +116,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "select overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet from sak join kategori using(kategori_id) where sak_id = ?",
+          "SELECT overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
           req.params.sak_id,
 
           (err, rows) => {
@@ -153,7 +179,7 @@ module.exports = function(app, pool) {
           req.body.viktighet
         ];
         connection.query(
-          "insert into sak (overskrift, innhold, bilde, kategori_id, viktighet) values (?,?,?,?,?)",
+          "INSERT INTO sak (overskrift, innhold, bilde, kategori_id, viktighet) VALUES (?,?,?,?,?)",
           val,
           err => {
             if (err) {
@@ -180,7 +206,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "delete from sak where sak_id=?",
+          "DELETE FROM sak WHERE sak_id=?",
           req.params.sak_id,
           (err, rows) => {
             connection.release();
@@ -215,7 +241,7 @@ module.exports = function(app, pool) {
           req.params.sak_id
         ];
         connection.query(
-          "update sak SET overskrift=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
+          "UPDATE sak SET overskrift=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
           val,
           err => {
             if (err) {

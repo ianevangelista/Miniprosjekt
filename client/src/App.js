@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Article from "./components/Article";
+import Article from "./pages/Article";
 import Category from "./pages/Category";
 import Search from "./components/Search";
 

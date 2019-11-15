@@ -2,12 +2,32 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Search from "./Search";
 import "../styles/Navbar.css";
+import { getAllCategories } from "../Service";
 
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      categories: []
+    };
+  }
+
+  componentDidMount() {
+    getAllCategories()
+      .then(response => {
+        console.log(response);
+        this.setState({ categories: response });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   render() {
+    const { categories } = this.state;
     return (
       <nav
-        class="navbar navbar-expand-md navbar-dark bg-primary sticky-top"
+        class="navbar py-0 navbar-expand-md navbar-dark bg-primary sticky-top"
         role="navigation"
       >
         <a class="navbar-brand shadow rounded">
@@ -49,12 +69,7 @@ export default class Navbar extends Component {
                 KATEGORI
               </NavLink>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <NavLink class="dropdown-item" exact to="/kategori/1">
-                  Kultur
-                </NavLink>
-                <NavLink class="dropdown-item" exact to="/kategori/2">
-                  Sport
-                </NavLink>
+                {categories.map(cat => getCategories(cat))}
               </div>
             </li>
           </ul>
@@ -63,4 +78,16 @@ export default class Navbar extends Component {
       </nav>
     );
   }
+}
+
+function getCategories(category) {
+  return (
+    <NavLink
+      class="dropdown-item"
+      exact
+      to={"/kategori/" + category.kategori_id}
+    >
+      {category.kategori_navn}
+    </NavLink>
+  );
 }

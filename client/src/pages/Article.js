@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "../styles/Article.css";
-import Navbar from "./Navbar.js";
-import Footer from "./Footer.js";
-import axios from "axios";
-import Card from "./Card";
-import ArticleEdit from "./ArticleEdit";
-import ArticleDelete from "./ArticleDelete";
+import Navbar from "../components/Navbar.js";
+import Footer from "../components/Footer.js";
+import Card from "../components/Card";
+import ArticleEdit from "../components/ArticleEdit";
+import ArticleDelete from "../components/ArticleDelete";
 import { getArticleDetails } from "../Service";
 
 export default class Article extends Component<{
@@ -46,29 +45,27 @@ export default class Article extends Component<{
           <Navbar />
           <div className="row justify-content-center align-items-center">
             <Card cardSize="50">
-              <div className="row justify-content-center align-items-center">
-                <img className="img-fluid" src={news.bilde}></img>
-                <div className="text-box mx-5">
-                  <p className="text-center h1">{news.overskrift}</p>
-                  <br />
-                  <p id="info-text" className="text-center">
-                    Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
-                    {stringifyTime(news.tidspunkt)}
-                  </p>
-                  <br />
-                  <p className="content-custom">
-                    TRONDHEIM (Ian Evangelista): {news.innhold}
-                  </p>
-                  <div className="my-3">
-                    <ArticleEdit
-                      articleId={articleId}
-                      articleTitle={news.overskrift}
-                      articleContent={news.innhold}
-                      articleImg={news.bilde}
-                      articleCategory={news.kategori_navn}
-                      articleImportancy={news.viktighet}
-                    />
-                  </div>
+              <img className="img-fluid" src={news.bilde} alt="Bilde"></img>
+              <div className="text-box mx-5">
+                <p className="text-center h1 my-3">{news.overskrift}</p>
+                <br />
+                <p id="info-text" className="text-center">
+                  Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
+                  {stringifyTime(news.tidspunkt)}
+                </p>
+                <br />
+                <p className="content-custom">
+                  TRONDHEIM (Ian Evangelista): {news.innhold}
+                </p>
+                <div className="my-3">
+                  <ArticleEdit
+                    articleId={articleId}
+                    articleTitle={news.overskrift}
+                    articleContent={news.innhold}
+                    articleImg={news.bilde}
+                    articleCategory={news.kategori_navn}
+                    articleImportancy={news.viktighet}
+                  />
                   <ArticleDelete articleId={articleId} />
                 </div>
               </div>

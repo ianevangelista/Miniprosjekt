@@ -7,6 +7,13 @@ export function getBreakingNews() {
   });
 }
 
+export function getAllCategories() {
+  return axios.get("http://localhost:8000/kategori").then(response => {
+    console.log(response);
+    return response.data;
+  });
+}
+
 export function getLiveFeedNews() {
   return axios.get("http://localhost:8000/sisteNyheter").then(response => {
     console.log(response);

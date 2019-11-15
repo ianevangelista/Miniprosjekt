@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
-import axios from "axios";
 import {
-  Container,
   ButtonDropdown,
   DropdownMenu,
   DropdownItem,
   DropdownToggle
 } from "reactstrap";
-import { addNews } from "../Service";
+import { addNews, getAllCategories } from "../Service";
 
 export default class Register extends Component {
   constructor(props) {
@@ -27,21 +25,32 @@ export default class Register extends Component {
       kategori_id: "",
       viktighet: "",
 
+      categories: [],
       dropdownOpen: false,
       dropdownOpenImportancy: false,
       valueCategory: "Kategori",
-      dropdownOpenImportancy: false,
       valueImportancy: "Viktighet (Høy: 1 Lav: 2)"
     };
   }
 
+  componentDidMount() {
+    getAllCategories()
+      .then(response => {
+        console.log(response);
+        this.setState({ categories: response });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   required() {
     if (
-      this.state.overskrift == "" ||
-      this.state.innhold == "" ||
-      this.state.bilde == "" ||
-      this.state.kategori_id == "" ||
-      this.state.viktighet == ""
+      this.state.overskrift === "" ||
+      this.state.innhold === "" ||
+      this.state.bilde === "" ||
+      this.state.kategori_id === "" ||
+      this.state.viktighet === ""
     ) {
       return false;
     }
@@ -105,7 +114,14 @@ export default class Register extends Component {
   };
 
   render() {
-    const { overskrift, innhold, bilde, kategori_id, viktighet } = this.state;
+    const {
+      overskrift,
+      innhold,
+      bilde,
+      kategori_id,
+      viktighet,
+      categories
+    } = this.state;
     return (
       <div>
         <Navbar />
@@ -160,8 +176,7 @@ export default class Register extends Component {
             >
               <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
               <DropdownMenu onClick={this.select} onChange={this.changeHandler}>
-                <DropdownItem>Kultur</DropdownItem>
-                <DropdownItem>Sport</DropdownItem>
+                {categories.map(category => getCategories(category))}
               </DropdownMenu>
             </ButtonDropdown>
           </div>
@@ -194,8 +209,15 @@ export default class Register extends Component {
     );
   }
 }
-function checkCategory(category: string) {
-  if (category == "Kultur") return 1;
-  else if (category == "Sport") return 2;
-  else return null;
+function checkCategory(category) {
+  console.log(category.substring(0, 1));
+  return category.substring(0, 1);
+}
+
+function getCategories(category) {
+  return (
+    <DropdownItem>
+      {category.kategori_id}. {category.kategori_navn}
+    </DropdownItem>
+  );
 }

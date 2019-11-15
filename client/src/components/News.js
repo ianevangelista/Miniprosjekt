@@ -6,7 +6,6 @@ import "../styles/Article.css";
 export default class News extends Component<{
   title?: string,
   src?: string,
-  alt?: string,
   id?: string,
   bgColor?: string,
   lastUpdate?: timestamp,
@@ -16,11 +15,11 @@ export default class News extends Component<{
     return (
       <Card cardSize={this.props.cardSize}>
         <NavLink
-          className="text-body nav-link"
+          className="text-body nav-link p-0"
           exact
           to={"/sak/" + this.props.id}
         >
-          <div className="news-effect col-sm-">
+          <div className="col-sm-">
             <div className={"mx-auto bg-" + this.props.bgColor + " border-0"}>
               <div>
                 <img
@@ -29,10 +28,11 @@ export default class News extends Component<{
                   alt={this.props.alt}
                 />
               </div>
-              <div className="card-body">
+              <div className="card-text p-3">
                 <p className="h2 text-center">{this.props.title}</p>
               </div>
             </div>
+            <p></p>
             <p className="text-muted text-center my-auto">
               Skrevet: {stringifyDate(this.props.lastUpdate)}{" "}
               {stringifyTime(this.props.lastUpdate)}

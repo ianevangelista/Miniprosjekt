@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import "../styles/LiveFeed.css";
 import { getLiveFeedNews } from "../Service";

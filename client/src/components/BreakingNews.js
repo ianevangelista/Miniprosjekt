@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import News from "./News";
-import Card from "./Card";
-import Row from "./Row";
 import Sak from "./Sak";
-import axios from "axios";
 import { getBreakingNews } from "../Service";
 
 export default class BreakingNews extends Component {
@@ -54,8 +51,8 @@ export default class BreakingNews extends Component {
       var headline = newsList[0];
       newsList.shift();
       return (
-        <div>
-          <div className="row justify-content-center align-items-center">
+        <div className="mx-5 px-5">
+          <div className="row justify-content-center align-items-center mx-5">
             <News
               title={headline.overskrift}
               src={headline.bilde}
@@ -78,7 +75,6 @@ function newsCard(news: Sak) {
     <News
       title={news.overskrift}
       src={news.bilde}
-      alt="Alt tekst"
       id={news.sak_id}
       lastUpdate={news.tidspunkt}
     ></News>

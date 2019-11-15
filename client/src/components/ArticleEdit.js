@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "../styles/Article.css";
-import axios from "axios";
 import {
   ButtonDropdown,
   DropdownMenu,
   DropdownItem,
   DropdownToggle
 } from "reactstrap";
-import { createHashHistory } from "history";
-import { editNews } from "../Service";
-// Use history.push(...) to programmatically change path, for instance after successfully editing an article
-const history = createHashHistory();
+import { editNews, getAllCategories } from "../Service";
 
 export default class ArticleEdit extends Component<{
   articleId?: number,
@@ -31,6 +27,7 @@ export default class ArticleEdit extends Component<{
       kategori_id: checkCategory(this.props.articleCategory),
       viktighet: this.props.articleImportancy,
 
+      categories: [],
       showInputForm: false,
       dropdownOpen: false,
       dropdownOpenImportancy: false,
@@ -46,13 +43,24 @@ export default class ArticleEdit extends Component<{
     this.required = this.required.bind(this);
   }
 
+  componentDidMount() {
+    getAllCategories()
+      .then(response => {
+        console.log(response);
+        this.setState({ categories: response });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   required() {
     if (
-      this.state.overskrift == "" ||
-      this.state.innhold == "" ||
-      this.state.bilde == "" ||
-      this.state.kategori_id == "" ||
-      this.state.viktighet == ""
+      this.state.overskrift === "" ||
+      this.state.innhold === "" ||
+      this.state.bilde === "" ||
+      this.state.kategori_id === "" ||
+      this.state.viktighet === ""
     ) {
       return false;
     }
@@ -118,9 +126,16 @@ export default class ArticleEdit extends Component<{
     });
   }
   render() {
-    const { overskrift, innhold, bilde, kategori_id, viktighet } = this.state;
+    const {
+      overskrift,
+      innhold,
+      bilde,
+      kategori_id,
+      viktighet,
+      categories
+    } = this.state;
     return (
-      <div>
+      <div className="my-3">
         {this.state.showInputForm && (
           <form onSubmit={this.editHandler}>
             <div class="form-group">
@@ -169,8 +184,7 @@ export default class ArticleEdit extends Component<{
                   onClick={this.select}
                   onChange={this.changeHandler}
                 >
-                  <DropdownItem>Kultur</DropdownItem>
-                  <DropdownItem>Sport</DropdownItem>
+                  {categories.map(category => getCategories(category))}
                 </DropdownMenu>
               </ButtonDropdown>
             </div>
@@ -192,8 +206,7 @@ export default class ArticleEdit extends Component<{
               </ButtonDropdown>
             </div>
             <button type="submit" class="btn btn-primary fa fa-save fa-custom">
-              {" "}
-              <a className="fa-custom">LAGRE</a>
+              <a className="fa-custom"> LAGRE</a>
             </button>
           </form>
         )}
@@ -201,17 +214,23 @@ export default class ArticleEdit extends Component<{
           className="bg-warning fa fa-edit fa-custom"
           onClick={this.toggleForm}
         >
-          {" "}
-          <a className="fa-custom">ENDRE SAK</a>
+          <a className="fa-custom"> ENDRE SAK</a>
         </Button>
       </div>
     );
   }
 }
-function checkCategory(category: string) {
-  if (category == "Kultur") return 1;
-  else if (category == "Sport") return 2;
-  else return null;
+function checkCategory(category) {
+  console.log(category.substring(0, 1));
+  return category.substring(0, 1);
+}
+
+function getCategories(category) {
+  return (
+    <DropdownItem>
+      {category.kategori_id}. {category.kategori_navn}
+    </DropdownItem>
+  );
 }
 
 function checkImportancy(importancy: string) {

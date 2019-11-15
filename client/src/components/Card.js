@@ -6,13 +6,9 @@ export default class Card extends Component<{
 }> {
   render() {
     return (
-      <div
-        className={
-          "card w-" + this.props.cardSize + " my-3 border-0 shadow rounded"
-        }
-      >
-        <div className="card-body">
-          <div>{this.props.children}</div>
+      <div className={"card w-" + this.props.cardSize + " my-3 border-0"}>
+        <div className="card-body p-0">
+          <div className="m-0">{this.props.children}</div>
         </div>
       </div>
     );

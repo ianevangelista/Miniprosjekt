@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import News from "../components/News.js";
-import Card from "../components/Card";
 import LiveFeed from "../components/LiveFeed";
 import Footer from "../components/Footer.js";
 import Sak from "../components/Sak";
-import axios from "axios";
 import { getCategory } from "../Service";
 
 export default class Category extends Component<{
@@ -59,7 +57,6 @@ function newsCard(news: Sak) {
     <News
       title={news.overskrift}
       src={news.bilde}
-      alt="Alt tekst"
       id={news.sak_id}
       lastUpdate={news.tidspunkt}
     ></News>

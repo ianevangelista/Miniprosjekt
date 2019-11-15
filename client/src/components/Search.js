@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "./Navbar";
-import News from "./News";
-import Card from "./Card";
-import LiveFeed from "./LiveFeed";
-import Footer from "./Footer";
-import Sak from "./Sak";
-import axios from "axios";
 import Suggestions from "./Suggestion";
 import { searchNews } from "../Service";
 
