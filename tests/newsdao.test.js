@@ -31,7 +31,7 @@ test("Get breaking news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBeGreaterThanOrEqual(5);
+    expect(data.length).toBeGreaterThanOrEqual(4);
     done();
   }
 
