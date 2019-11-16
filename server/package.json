@@ -18,8 +18,21 @@
       "last 1 safari version"
     ]
   },
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "concurrently": "^5.0.0",
-    "nodemon": "^1.19.4"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "fs": "0.0.1-security"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   }
 }

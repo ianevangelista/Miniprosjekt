@@ -32,26 +32,14 @@ test("Get one news from DB", done => {
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(1);
-    expect(data[0].overskrift).toBe("Test");
+    expect(data[0].overskrift).toBe("Test1");
     done();
   }
 
-  personDao.getOne(1, callback);
+  newsDao.getOne(1, callback);
 });
 
-test("get unknown person from db", done => {
-  function callback(status, data) {
-    console.log(
-      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
-    );
-    expect(data.length).toBe(0);
-    done();
-  }
-
-  personDao.getOne(0, callback);
-});
-
-test("add person to db", done => {
+/*test("Add news to DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
@@ -60,25 +48,19 @@ test("add person to db", done => {
     done();
   }
 
-  personDao.createOne(
-    { navn: "Nils Nilsen", alder: 34, adresse: "Gata 3" },
+  newsDao.createOne(
+    {
+      overskrift: "DAO-test",
+      innhold: "Dette er en test",
+      bilde: "bilde",
+      kategori_id: 1,
+      viktighet: 1
+    },
     callback
   );
 });
 
-test("get all persons from db", done => {
-  function callback(status, data) {
-    console.log(
-      "Test callback: status=" + status + ", data.length=" + data.length
-    );
-    expect(data.length).toBeGreaterThanOrEqual(2);
-    done();
-  }
-
-  personDao.getAll(callback);
-});
-
-test("delete one person from db", done => {
+test("Delete one news from DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data.length=" + data.length
@@ -87,10 +69,10 @@ test("delete one person from db", done => {
     done();
   }
 
-  personDao.deleteOne(1, callback);
+  newsDao.deleteOne(1, callback);
 });
 
-test("update one person from db", done => {
+test("Update one news from DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" +
@@ -102,8 +84,14 @@ test("update one person from db", done => {
     done();
   }
 
-  personDao.updateOne(
-    { navn: "Ian Evangelista", alder: 20, adresse: "Trondheim", id: 2 },
+  newsDao.updateOne(
+    {
+      overskrift: "DAO-test er endret",
+      innhold: "Dette er en test som har blitt endret",
+      bilde: "bilde",
+      kategori_id: 1,
+      viktighet: 1
+    },
     callback
   );
-});
+});*/
