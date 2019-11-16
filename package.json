@@ -1,0 +1,38 @@
+{
+  "name": "sysweb",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "fs": "0.0.1-security",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  }
+}

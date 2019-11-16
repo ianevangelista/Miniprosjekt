@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const NewsDao = require("../tests/newsdao");
+const NewsDao = require("../../tests/newsdao");
 
 var port = process.env.PORT || 8000;
 var pool = mysql.createPool({
