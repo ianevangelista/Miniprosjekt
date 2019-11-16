@@ -90,7 +90,8 @@ test("Update one news from DB", done => {
       innhold: "Dette er en test som har blitt endret",
       bilde: "bilde",
       kategori_id: 1,
-      viktighet: 1
+      viktighet: 1,
+      sak_id: 1
     },
     callback
   );

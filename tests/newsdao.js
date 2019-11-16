@@ -38,7 +38,8 @@ module.exports = class NewsDao extends Dao {
       json.innhold,
       json.bilde,
       json.kategori_id,
-      json.viktighet
+      json.viktighet,
+      json.sak_id
     ];
     super.query(
       "UPDATE sak SET overskrift=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
