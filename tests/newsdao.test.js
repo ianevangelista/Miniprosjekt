@@ -39,7 +39,7 @@ test("Get one news from DB", done => {
   newsDao.getOne(1, callback);
 });
 
-/*test("Add news to DB", done => {
+test("Add news to DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
@@ -94,4 +94,4 @@ test("Update one news from DB", done => {
     },
     callback
   );
-});*/
+});
