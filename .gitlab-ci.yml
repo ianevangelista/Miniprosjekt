@@ -17,7 +17,7 @@ before_script:
 run_tests:
   stage: test
   script:
-    - npm test server
+    - npm test
   artifacts:
     paths:
       - coverage/
