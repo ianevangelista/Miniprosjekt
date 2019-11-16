@@ -26,6 +26,19 @@ afterAll(() => {
   pool.end();
 });
 
+test("Get breaking news from DB", done => {
+  function callback(status, data) {
+    console.log(
+      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+    );
+    data.length).toBeGreaterThanOrEqual(5)
+    done();
+  }
+
+  newsDao.getBreakingNews(callback);
+});
+
+
 test("Get one news from DB", done => {
   function callback(status, data) {
     console.log(
