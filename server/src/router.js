@@ -9,7 +9,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
+          "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
 
           (err, rows) => {
             connection.release();
@@ -35,7 +35,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
+          "SELECT sak_id, overskrift, tidspunkt FROM sak JOIN kategori USING(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
 
           (err, rows) => {
             connection.release();
@@ -88,7 +88,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT sak_id, overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak join kategori USING(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
+          "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak join kategori USING(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
           req.params.id,
 
           (err, rows) => {
@@ -116,7 +116,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT overskrift, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
+          "SELECT overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, kategori_id, viktighet FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
           req.params.sak_id,
 
           (err, rows) => {
@@ -173,13 +173,14 @@ module.exports = function(app, pool) {
         console.log("Fikk databasekobling");
         var val = [
           req.body.overskrift,
+          req.body.ingress,
           req.body.innhold,
           req.body.bilde,
           req.body.kategori_id,
           req.body.viktighet
         ];
         connection.query(
-          "INSERT INTO sak (overskrift, innhold, bilde, kategori_id, viktighet) VALUES (?,?,?,?,?)",
+          "INSERT INTO sak (overskrift, ingress, innhold, bilde, kategori_id, viktighet) VALUES (?,?,?,?,?,?)",
           val,
           err => {
             if (err) {
@@ -234,6 +235,7 @@ module.exports = function(app, pool) {
         console.log("Fikk databasekobling");
         var val = [
           req.body.overskrift,
+          req.body.ingress,
           req.body.innhold,
           req.body.bilde,
           req.body.kategori_id,
@@ -241,7 +243,7 @@ module.exports = function(app, pool) {
           req.params.sak_id
         ];
         connection.query(
-          "UPDATE sak SET overskrift=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
+          "UPDATE sak SET overskrift=?, ingress=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
           val,
           err => {
             if (err) {

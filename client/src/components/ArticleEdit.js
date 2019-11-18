@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "../styles/Article.css";
@@ -12,9 +14,11 @@ import { editNews, getAllCategories } from "../Service";
 export default class ArticleEdit extends Component<{
   articleId?: number,
   articleTitle?: string,
+  articleIngress?: String,
   articleContent?: string,
   articleImg?: string,
   articleCategory?: string,
+  articleCategoryId?: number,
   articleImportancy?: number
 }> {
   constructor(props) {
@@ -22,16 +26,18 @@ export default class ArticleEdit extends Component<{
 
     this.state = {
       overskrift: this.props.articleTitle,
+      ingress: this.props.articleIngress,
       innhold: this.props.articleContent,
       bilde: this.props.articleImg,
-      kategori_id: checkCategory(this.props.articleCategory),
+      kategori_id: this.props.articleCategoryId,
       viktighet: this.props.articleImportancy,
 
       categories: [],
       showInputForm: false,
       dropdownOpen: false,
       dropdownOpenImportancy: false,
-      valueCategory: this.props.articleCategory,
+      valueCategory:
+        this.props.articleCategoryId + ". " + this.props.articleCategory,
       valueImportancy: this.props.articleImportancy
     };
 
@@ -57,6 +63,7 @@ export default class ArticleEdit extends Component<{
   required() {
     if (
       this.state.overskrift === "" ||
+      this.state.ingress === "" ||
       this.state.innhold === "" ||
       this.state.bilde === "" ||
       this.state.kategori_id === "" ||
@@ -68,6 +75,8 @@ export default class ArticleEdit extends Component<{
   }
 
   editHandler = e => {
+    console.log(this.state.kategori_id);
+
     e.preventDefault();
     if (window.confirm("Er du sikker?")) {
       if (this.required()) {
@@ -128,6 +137,7 @@ export default class ArticleEdit extends Component<{
   render() {
     const {
       overskrift,
+      ingress,
       innhold,
       bilde,
       kategori_id,
@@ -147,6 +157,17 @@ export default class ArticleEdit extends Component<{
                 onChange={this.changeHandler}
                 class="form-control"
                 placeholder="Skriv inn tittelen til din sak"
+              ></input>
+            </div>
+            <div class="form-group">
+              <label>Ingress:</label>
+              <input
+                type="text"
+                name="ingress"
+                value={ingress}
+                onChange={this.changeHandler}
+                class="form-control"
+                placeholder="Skriv inn ingressen til din sak"
               ></input>
             </div>
             <div class="form-group">
@@ -221,7 +242,6 @@ export default class ArticleEdit extends Component<{
   }
 }
 function checkCategory(category) {
-  console.log(category.substring(0, 1));
   return category.substring(0, 1);
 }
 

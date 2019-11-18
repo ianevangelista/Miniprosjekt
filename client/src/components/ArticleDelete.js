@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "../styles/Article.css";
@@ -6,8 +7,8 @@ import { deleteNews } from "../Service";
 export default class ArticleEdit extends Component<{
   articleId?: number
 }> {
-  deleteHandler = e => {
-    e.preventDefault();
+  deleteHandler = (event: Event) => {
+    event.preventDefault();
     if (window.confirm("Er du sikker?")) {
       deleteNews(this.props.articleId)
         .then(response => {

@@ -84,6 +84,10 @@ function getCategories(category) {
   return (
     <NavLink
       class="dropdown-item"
+      onClick={() => {
+        window.location.hash = "/kategori/" + category.kategori_id;
+        window.location.reload();
+      }}
       exact
       to={"/kategori/" + category.kategori_id}
     >

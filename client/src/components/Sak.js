@@ -1,6 +1,7 @@
 export default class Sak {
   sak_id: number;
   overskrift: string;
+  ingress: string;
   innhold: string;
   tidspunkt: timestamp;
   bilde: string;
@@ -10,6 +11,7 @@ export default class Sak {
   constructor(
     sak_id: number,
     overskrift: string,
+    ingress: string,
     innhold: string,
     tidspunkt: timestamp,
     bilde: string,
@@ -18,6 +20,7 @@ export default class Sak {
   ) {
     this.sak_id = sak_id;
     this.overskrift = overskrift;
+    this.ingress = ingress;
     this.innhold = innhold;
     this.tidspunkt = tidspunkt;
     this.bilde = bilde;

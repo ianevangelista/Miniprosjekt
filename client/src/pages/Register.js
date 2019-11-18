@@ -20,6 +20,7 @@ export default class Register extends Component {
 
     this.state = {
       overskrift: "",
+      ingress: "",
       innhold: "",
       bilde: "",
       kategori_id: "",
@@ -47,6 +48,7 @@ export default class Register extends Component {
   required() {
     if (
       this.state.overskrift === "" ||
+      this.state.ingress === "" ||
       this.state.innhold === "" ||
       this.state.bilde === "" ||
       this.state.kategori_id === "" ||
@@ -116,6 +118,7 @@ export default class Register extends Component {
   render() {
     const {
       overskrift,
+      ingress,
       innhold,
       bilde,
       kategori_id,
@@ -144,6 +147,17 @@ export default class Register extends Component {
               onChange={this.changeHandler}
               class="form-control"
               placeholder="Skriv inn tittelen til din sak"
+            ></input>
+          </div>
+          <div class="form-group mx-5">
+            <label>Ingress:</label>
+            <input
+              type="text"
+              name="ingress"
+              value={ingress}
+              onChange={this.changeHandler}
+              class="form-control"
+              placeholder="Skriv inn ingressen til din sak"
             ></input>
           </div>
           <div class="form-group mx-5">

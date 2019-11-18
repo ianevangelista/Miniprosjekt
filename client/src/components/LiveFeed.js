@@ -52,9 +52,21 @@ export default class LiveFeed extends Component {
 function getLatestNews(news: Sak) {
   return (
     <NavLink className="marquee" exact to={"/sak/" + news.sak_id}>
-      <a style={{ marginRight: "6rem" }}>{news.overskrift}</a>
+      <a className="font-weight-bold">
+        {stringifyDate(news.tidspunkt)} {stringifyTime(news.tidspunkt)}
+        {" - "}
+      </a>
+      <a className="mr-5 text-danger font-weight-bold"> {news.overskrift}</a>
     </NavLink>
   );
+}
+
+function stringifyDate(date: String) {
+  return date.slice(0, 10);
+}
+
+function stringifyTime(date: String) {
+  return date.slice(11, 16);
 }
 
 function getCurrentDate(separator = ".") {

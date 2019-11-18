@@ -39,6 +39,7 @@ export default class BreakingNews extends Component {
           new Sak(
             news.sak_id,
             news.overskrift,
+            news.ingress,
             news.innhold,
             news.tidspunkt,
             news.bilde,
@@ -53,14 +54,16 @@ export default class BreakingNews extends Component {
       return (
         <div className="mx-5 px-5">
           <div className="row justify-content-center align-items-center mx-5">
-            <News
-              title={headline.overskrift}
-              src={headline.bilde}
-              bgColor="danger"
-              id={headline.sak_id}
-              lastUpdate={headline.tidspunkt}
-              cardSize="50"
-            />
+            <div className="mx-5 px-5">
+              <News
+                title={headline.overskrift}
+                ingress={headline.ingress}
+                src={headline.bilde}
+                bgColor="danger"
+                id={headline.sak_id}
+                lastUpdate={headline.tidspunkt}
+              />
+            </div>
           </div>
           <div className="card-columns mx-5">
             {newsList.map(news => newsCard(news))}
@@ -74,6 +77,7 @@ function newsCard(news: Sak) {
   return (
     <News
       title={news.overskrift}
+      ingress={news.ingress}
       src={news.bilde}
       id={news.sak_id}
       lastUpdate={news.tidspunkt}

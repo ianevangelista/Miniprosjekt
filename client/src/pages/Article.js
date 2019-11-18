@@ -61,9 +61,11 @@ export default class Article extends Component<{
                   <ArticleEdit
                     articleId={articleId}
                     articleTitle={news.overskrift}
+                    articleIngress={news.ingress}
                     articleContent={news.innhold}
                     articleImg={news.bilde}
                     articleCategory={news.kategori_navn}
+                    articleCategoryId={news.kategori_id}
                     articleImportancy={news.viktighet}
                   />
                   <ArticleDelete articleId={articleId} />

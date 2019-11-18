@@ -43,8 +43,10 @@ export default class Category extends Component<{
         <div className="home-container bg-light ">
           <Navbar />
           <LiveFeed />
-          <div className="card-columns mx-5">
-            {news.map(news => newsCard(news))}
+          <div className="mx-5 px-5">
+            <div className="card-columns mx-5">
+              {news.map(news => newsCard(news))}
+            </div>
           </div>
           <Footer />
         </div>
@@ -56,6 +58,7 @@ function newsCard(news: Sak) {
   return (
     <News
       title={news.overskrift}
+      ingress={news.ingress}
       src={news.bilde}
       id={news.sak_id}
       lastUpdate={news.tidspunkt}

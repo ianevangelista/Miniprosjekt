@@ -5,6 +5,7 @@ import "../styles/Article.css";
 
 export default class News extends Component<{
   title?: string,
+  ingress?: string,
   src?: string,
   id?: string,
   bgColor?: string,
@@ -28,11 +29,13 @@ export default class News extends Component<{
                   alt={this.props.alt}
                 />
               </div>
-              <div className="card-text p-3">
-                <p className="h2 text-center">{this.props.title}</p>
+              <div className="card-text">
+                <p className="h2 text-center mt-2 mx-3">{this.props.title}</p>
               </div>
             </div>
-            <p></p>
+            <p className="text-muted text-center my-3 mx-3">
+              {this.props.ingress}
+            </p>
             <p className="text-muted text-center my-auto">
               Skrevet: {stringifyDate(this.props.lastUpdate)}{" "}
               {stringifyTime(this.props.lastUpdate)}

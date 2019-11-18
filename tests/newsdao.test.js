@@ -63,6 +63,7 @@ test("Add news to DB", done => {
   newsDao.createOne(
     {
       overskrift: "DAO-test",
+      ingress: "Ingress",
       innhold: "Dette er en test",
       bilde: "bilde",
       kategori_id: 1,
@@ -99,6 +100,7 @@ test("Update one news from DB", done => {
   newsDao.updateOne(
     {
       overskrift: "DAO-test er endret",
+      ingress: "Ingress endret",
       innhold: "Dette er en test som har blitt endret",
       bilde: "bilde",
       kategori_id: 1,
