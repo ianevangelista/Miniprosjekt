@@ -11,6 +11,7 @@ CREATE TABLE kategori  (
 CREATE TABLE sak  (
   sak_id int(11) NOT NULL AUTO_INCREMENT,
   overskrift varchar(100) NOT NULL,
+  ingress varchar(300) NOT NULL,
   innhold text DEFAULT NULL,
   tidspunkt varchar(100),
   bilde varchar(500) NOT NULL,
