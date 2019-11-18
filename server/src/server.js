@@ -15,24 +15,6 @@ var pool = mysql.createPool({
   debug: false
 });
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Methods"
-  );
-  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
-  next();
-});
-
-var htmlPath = __dirname + "/build";
-app.use(express.static(htmlPath));
-
-require("./router")(app, pool);
-app.listen(port, function() {
-  console.log("info", "Server is running at port : " + 8000);
-});
-
 // TESTING
 
 let newsDao = new NewsDao(pool);
@@ -74,4 +56,22 @@ app.put("/sak/:sak_id", (req, res) => {
     res.status(status);
     res.json(data);
   });
+});
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Methods"
+  );
+  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
+  next();
+});
+
+var htmlPath = __dirname + "/build";
+app.use(express.static(htmlPath));
+
+require("./router")(app, pool);
+app.listen(port, function() {
+  console.log("info", "Server is running at port : " + 8000);
 });
