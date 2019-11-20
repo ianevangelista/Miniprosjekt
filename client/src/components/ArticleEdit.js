@@ -75,8 +75,6 @@ export default class ArticleEdit extends Component<{
   }
 
   editHandler = e => {
-    console.log(this.state.kategori_id);
-
     e.preventDefault();
     if (window.confirm("Er du sikker?")) {
       if (this.required()) {
@@ -193,48 +191,52 @@ export default class ArticleEdit extends Component<{
                 placeholder="Skriv inn bilde-URL til din sak"
               ></input>
             </div>
-            <div class="form-group">
-              <label>Kategori:</label>
-              <ButtonDropdown
-                className="ml-3"
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggle}
-              >
-                <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
-                <DropdownMenu
-                  onClick={this.select}
-                  onChange={this.changeHandler}
+            <div className="row">
+              <div class="form-group col-4">
+                <label>Kategori:</label>
+                <ButtonDropdown
+                  className="ml-3"
+                  isOpen={this.state.dropdownOpen}
+                  toggle={this.toggle}
                 >
-                  {categories.map(category => getCategories(category))}
-                </DropdownMenu>
-              </ButtonDropdown>
-            </div>
-            <div class="form-group">
-              <label>Viktighet:</label>
-              <ButtonDropdown
-                className="ml-3"
-                isOpen={this.state.dropdownOpenImportancy}
-                toggle={this.toggleImportancy}
-              >
-                <DropdownToggle>{this.state.valueImportancy}</DropdownToggle>
-                <DropdownMenu
-                  onClick={this.selectImportancy}
-                  onChange={this.changeHandler}
+                  <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
+                  <DropdownMenu
+                    onClick={this.select}
+                    onChange={this.changeHandler}
+                  >
+                    {categories.map(category => getCategories(category))}
+                  </DropdownMenu>
+                </ButtonDropdown>
+              </div>
+              <div class="form-group col-4">
+                <label>Viktighet:</label>
+                <ButtonDropdown
+                  className="ml-3"
+                  isOpen={this.state.dropdownOpenImportancy}
+                  toggle={this.toggleImportancy}
                 >
-                  <DropdownItem>1</DropdownItem>
-                  <DropdownItem>2</DropdownItem>
-                </DropdownMenu>
-              </ButtonDropdown>
+                  <DropdownToggle>{this.state.valueImportancy}</DropdownToggle>
+                  <DropdownMenu
+                    onClick={this.selectImportancy}
+                    onChange={this.changeHandler}
+                  >
+                    <DropdownItem>1</DropdownItem>
+                    <DropdownItem>2</DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
+              </div>
+              <div className="col-4">
+                <button
+                  type="submit"
+                  className="btn btn-success fa fa-save fa-custom"
+                >
+                  <a className="fa-custom"> LAGRE</a>
+                </button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary fa fa-save fa-custom">
-              <a className="fa-custom"> LAGRE</a>
-            </button>
           </form>
         )}
-        <Button
-          className="bg-warning fa fa-edit fa-custom"
-          onClick={this.toggleForm}
-        >
+        <Button className="fa fa-edit fa-custom" onClick={this.toggleForm}>
           <a className="fa-custom"> ENDRE SAK</a>
         </Button>
       </div>

@@ -36,11 +36,11 @@ export default class LiveFeed extends Component {
       return (
         <div className="marquee">
           <div className="bg-dark">
-            {getCurrentDate()}
-            <br />
             SISTE NYTT
+            <br />
+            {getCurrentDate()}
           </div>
-          <p className="h-5 text-uppercase">
+          <p className="text-uppercase livefeed-text">
             {news.map(news => getLatestNews(news))}
           </p>
         </div>

@@ -16,7 +16,9 @@ export default class Sak {
     tidspunkt: timestamp,
     bilde: string,
     kategori_navn: string,
-    viktighet: number
+    viktighet: number,
+    tommelOpp: number,
+    tommelNed: number
   ) {
     this.sak_id = sak_id;
     this.overskrift = overskrift;
@@ -26,5 +28,7 @@ export default class Sak {
     this.bilde = bilde;
     this.kategori_navn = kategori_navn;
     this.viktighet = viktighet;
+    this.tommelOpp = tommelOpp;
+    this.tommelNed = tommelNed;
   }
 }

@@ -21,5 +21,30 @@
 .fa-custom {
   color: black;
   text-align: center;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-family: "Georgia, serif";
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 800px) {
+  .card-columns {
+    column-count: 1;
+  }
+  .media-custom {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 800px) {
+  .card-columns {
+    column-count: 2;
+  }
+  .media-custom {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
 }

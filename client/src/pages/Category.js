@@ -43,7 +43,7 @@ export default class Category extends Component<{
         <div className="home-container bg-light ">
           <Navbar />
           <LiveFeed />
-          <div className="mx-5 px-5">
+          <div className="mx-5 px-5 media-custom">
             <div className="card-columns mx-5">
               {news.map(news => newsCard(news))}
             </div>

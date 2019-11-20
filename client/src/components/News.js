@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import "../styles/Article.css";
+import { getRating } from "../Service";
 
 export default class News extends Component<{
   title?: string,
@@ -10,7 +11,9 @@ export default class News extends Component<{
   id?: string,
   bgColor?: string,
   lastUpdate?: timestamp,
-  cardSize?: number
+  cardSize?: number,
+  upvotes?: number,
+  downvotes?: number
 }> {
   render() {
     return (
@@ -40,6 +43,11 @@ export default class News extends Component<{
               Skrevet: {stringifyDate(this.props.lastUpdate)}{" "}
               {stringifyTime(this.props.lastUpdate)}
             </p>
+            {showRating(
+              getRating(this.props.upvotes, this.props.downvotes),
+              this.props.upvotes,
+              this.props.downvotes
+            )}
           </div>
         </NavLink>
       </Card>
@@ -53,4 +61,19 @@ function stringifyDate(date: String) {
 
 function stringifyTime(date: String) {
   return date.slice(11, 16);
+}
+
+function showRating(rating, up, down) {
+  if (rating == null) return null;
+  else {
+    if (up == null) up = 0;
+    if (down == null) down = 0;
+    return (
+      <div className="row justify-content-center align-items-center">
+        <p className="m-2 text-center my-auto ">Rating: {rating}</p>
+        <p className="m-2 text-success text-center my-auto ">Likes: {up}</p>
+        <p className="m-2 text-danger text-center my-auto ">Dislikes: {down}</p>
+      </div>
+    );
+  }
 }

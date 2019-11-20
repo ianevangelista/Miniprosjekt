@@ -23,7 +23,7 @@ export default class ArticleEdit extends Component<{
 
   render() {
     return (
-      <div className="my-3">
+      <div className="my-3 col-3">
         <Button
           className="bg-danger fa fa-cut fa-custom"
           onClick={this.deleteHandler}

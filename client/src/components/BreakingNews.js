@@ -44,7 +44,9 @@ export default class BreakingNews extends Component {
             news.tidspunkt,
             news.bilde,
             news.kategori_navn,
-            news.viktighet
+            news.viktighet,
+            news.tommelOpp,
+            news.tommelNed
           )
         );
       });
@@ -52,9 +54,9 @@ export default class BreakingNews extends Component {
       var headline = newsList[0];
       newsList.shift();
       return (
-        <div className="mx-5 px-5">
+        <div className="mx-5 px-5 media-custom">
           <div className="row justify-content-center align-items-center mx-5">
-            <div className="mx-5 px-5">
+            <div className="mx-5 px-5 media-custom">
               <News
                 title={headline.overskrift}
                 ingress={headline.ingress}
@@ -62,6 +64,8 @@ export default class BreakingNews extends Component {
                 bgColor="danger"
                 id={headline.sak_id}
                 lastUpdate={headline.tidspunkt}
+                upvotes={headline.tommelOpp}
+                downvotes={headline.tommelNed}
               />
             </div>
           </div>
@@ -81,6 +85,8 @@ function newsCard(news: Sak) {
       src={news.bilde}
       id={news.sak_id}
       lastUpdate={news.tidspunkt}
+      upvotes={news.tommelOpp}
+      downvotes={news.tommelNed}
     ></News>
   );
 }
