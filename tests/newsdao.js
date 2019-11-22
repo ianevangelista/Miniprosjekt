@@ -3,7 +3,7 @@ const Dao = require("./dao.js");
 module.exports = class NewsDao extends Dao {
   getBreakingNews(callback) {
     super.query(
-      "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet, tommelOpp, tommelNed FROM sak join kategori USING(kategori_id) WHERE viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
+      "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, tidspunktEndret, bilde, kategori_navn, viktighet, tommelOpp, tommelNed FROM sak join kategori USING(kategori_id) WHERE viktighet = 1 ORDER BY tidspunkt DESC LIMIT 22",
       [],
       callback
     );
@@ -11,7 +11,7 @@ module.exports = class NewsDao extends Dao {
 
   getOne(id, callback) {
     super.query(
-      "SELECT overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, kategori_id, viktighet, tommelOpp, tommelNed FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
+      "SELECT overskrift, ingress, innhold, tidspunkt, tidspunktEndret, bilde, kategori_navn, kategori_id, viktighet, tommelOpp, tommelNed FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
       [id],
       callback
     );
@@ -44,7 +44,7 @@ module.exports = class NewsDao extends Dao {
       json.sak_id
     ];
     super.query(
-      "UPDATE sak SET overskrift=?, ingress=?, innhold=?, bilde=?, kategori_id=?, viktighet=? WHERE sak_id = ?",
+      "UPDATE sak SET overskrift=?, ingress=?, innhold=?, bilde=?, kategori_id=?, viktighet=?, tidspunktEndret=CURRENT_TIMESTAMP WHERE sak_id = ?",
       val,
       callback
     );

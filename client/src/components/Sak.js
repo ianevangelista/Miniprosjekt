@@ -4,6 +4,7 @@ export default class Sak {
   ingress: string;
   innhold: string;
   tidspunkt: timestamp;
+  tidspunktEndret: timestamp;
   bilde: string;
   kategori_id: number;
   viktighet: number;
@@ -14,6 +15,7 @@ export default class Sak {
     ingress: string,
     innhold: string,
     tidspunkt: timestamp,
+    tidspunktEndret: timestamp,
     bilde: string,
     kategori_navn: string,
     viktighet: number,
@@ -25,6 +27,7 @@ export default class Sak {
     this.ingress = ingress;
     this.innhold = innhold;
     this.tidspunkt = tidspunkt;
+    this.tidspunktEndret = tidspunktEndret;
     this.bilde = bilde;
     this.kategori_navn = kategori_navn;
     this.viktighet = viktighet;

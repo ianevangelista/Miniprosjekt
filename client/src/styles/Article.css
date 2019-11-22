@@ -25,6 +25,19 @@
   font-weight: bold;
 }
 
+.fa-custom-likes {
+  color: rgb(62, 204, 62);
+  text-align: center;
+  font-family: "Georgia, serif";
+  font-weight: bold;
+}
+.fa-custom-dislikes {
+  color: rgb(255, 45, 45);
+  text-align: center;
+  font-family: "Georgia, serif";
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 800px) {
   .card-columns {
     column-count: 1;

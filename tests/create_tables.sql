@@ -16,6 +16,7 @@ CREATE TABLE sak  (
   ingress varchar(300) NOT NULL,
   innhold text DEFAULT NULL,
   tidspunkt varchar(100),
+  tidspunktEndret varchar(100),
   bilde varchar(500) NOT NULL,
   kategori_id int(2) NOT NULL,
   viktighet int(1) NOT NULL,

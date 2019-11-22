@@ -10,6 +10,7 @@ export default class News extends Component<{
   src?: string,
   id?: string,
   bgColor?: string,
+  written?: timestamp,
   lastUpdate?: timestamp,
   cardSize?: number,
   upvotes?: number,
@@ -40,7 +41,7 @@ export default class News extends Component<{
               {this.props.ingress}
             </p>
             <p className="text-muted text-center my-auto">
-              Skrevet: {stringifyDate(this.props.lastUpdate)}{" "}
+              Sist endret: {stringifyDate(this.props.lastUpdate)}{" "}
               {stringifyTime(this.props.lastUpdate)}
             </p>
             {showRating(
@@ -55,7 +56,6 @@ export default class News extends Component<{
   }
 }
 
-
 function showRating(rating, up, down) {
   if (rating == null) return null;
   else {
@@ -63,9 +63,9 @@ function showRating(rating, up, down) {
     if (down == null) down = 0;
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="m-2 text-center my-auto ">Rating: {rating}</p>
-        <p className="m-2 text-success text-center my-auto ">Likes: {up}</p>
-        <p className="m-2 text-danger text-center my-auto ">Dislikes: {down}</p>
+        <p className="fa fa-star fa-custom m-2 "> {rating}</p>
+        <p className="fa fa-thumbs-up fa-custom-likes m-2"> {up}</p>
+        <p className="fa fa-thumbs-down fa-custom-dislikes m-2"> {down}</p>
       </div>
     );
   }

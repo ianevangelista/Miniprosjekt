@@ -43,6 +43,7 @@ export default class BreakingNews extends Component {
             news.ingress,
             news.innhold,
             news.tidspunkt,
+            news.tidspunktEndret,
             news.bilde,
             news.kategori_navn,
             news.viktighet,
@@ -64,7 +65,8 @@ export default class BreakingNews extends Component {
                 src={headline.bilde}
                 bgColor="danger"
                 id={headline.sak_id}
-                lastUpdate={headline.tidspunkt}
+                written={headline.tidspunkt}
+                lastUpdate={headline.tidspunktEndret}
                 upvotes={headline.tommelOpp}
                 downvotes={headline.tommelNed}
               />
@@ -86,7 +88,8 @@ function newsCard(news: Sak) {
       ingress={news.ingress}
       src={news.bilde}
       id={news.sak_id}
-      lastUpdate={news.tidspunkt}
+      written={news.tidspunkt}
+      lastUpdate={news.tidspunktEndret}
       upvotes={news.tommelOpp}
       downvotes={news.tommelNed}
     ></News>

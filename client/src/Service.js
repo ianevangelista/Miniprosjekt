@@ -96,10 +96,10 @@ export function rateNews(id, state) {
 }
 
 export function getRating(tommelOpp, tommelNed) {
-  var totalVotes = tommelOpp + Math.abs(tommelNed);
+  var totalVotes = tommelOpp + tommelNed;
   if (totalVotes == 0) return null;
   else {
-    return ((tommelOpp - Math.abs(tommelNed)) / totalVotes).toFixed(2);
+    return ((tommelOpp - tommelNed) / totalVotes).toFixed(2);
   }
 }
 

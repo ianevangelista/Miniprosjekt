@@ -5,7 +5,12 @@ import Footer from "../components/Footer.js";
 import Card from "../components/Card";
 import ArticleEdit from "../components/ArticleEdit";
 import ArticleDelete from "../components/ArticleDelete";
-import { getArticleDetails, getRating, stringifyTime, stringifyDate } from "../Service";
+import {
+  getArticleDetails,
+  getRating,
+  stringifyTime,
+  stringifyDate
+} from "../Service";
 import CommentBox from "../components/CommentBox";
 import CommentForm from "../components/CommentForm";
 import Rating from "../components/Rating";
@@ -48,22 +53,30 @@ export default class Article extends Component<{
           <Navbar />
           <div className="row justify-content-center align-items-center">
             <Card cardSize="75">
-              <img className="img-fluid" src={news.bilde} alt="Bilde"></img>
+              <img
+                className="img-fluid w-100"
+                src={news.bilde}
+                alt="Bilde"
+              ></img>
               <div className="text-box mx-5">
                 <p className="text-center h1 my-3">{news.overskrift}</p>
                 <br />
-                <p id="info-text" className="text-center text-muted">
-                  Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
-                  {stringifyTime(news.tidspunkt)}
-                </p>
-                <div className="row">
-                  <Rating
-                    articleId={articleId}
-                    upvotes={news.tommelOpp}
-                    downvotes={news.tommelNed}
-                  />
-                  <ArticleDelete articleId={articleId} />
+                <div className="row justify-content-center align-items-center">
+                  <div id="info-text" className="text-center text-muted">
+                    Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
+                    {stringifyTime(news.tidspunkt)}
+                    <div className="m-3">
+                      SIST ENDRET: {stringifyDate(news.tidspunktEndret)} |{" "}
+                      {stringifyTime(news.tidspunktEndret)}
+                    </div>
+                    <ArticleDelete articleId={articleId} />
+                  </div>
                 </div>
+                <Rating
+                  articleId={articleId}
+                  upvotes={news.tommelOpp}
+                  downvotes={news.tommelNed}
+                />
 
                 <br />
 

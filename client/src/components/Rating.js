@@ -45,7 +45,7 @@ export default class Rating extends Component<{
   };
 
   downVote = () => {
-    let newCount = this.state.tommelNed - 1;
+    let newCount = this.state.tommelNed + 1;
     this.setState(
       {
         tommelNed: newCount
@@ -57,12 +57,12 @@ export default class Rating extends Component<{
   render() {
     const { rating, tommelOpp, tommelNed } = this.state;
     return (
-      <div className="text-center my-3 col-9">
+      <div className="text-center my-3">
         {showRating(getRating(this.state.tommelOpp, this.state.tommelNed))}
         <Button
           name="tommelOpp"
           value={tommelOpp}
-          className="fa fa-thumbs-up fa-custom m-2"
+          className="fa fa-thumbs-up fa-custom-likes m-2"
           onClick={this.upVote}
         >
           {" " + showLikes(this.state.tommelOpp)}
@@ -70,7 +70,7 @@ export default class Rating extends Component<{
         <Button
           name="tommelNed"
           value={tommelNed}
-          className="fa fa-thumbs-down fa-custom m-2"
+          className="fa fa-thumbs-down fa-custom-dislikes m-2"
           onClick={this.downVote}
         >
           {" " + showLikes(this.state.tommelNed)}
@@ -84,13 +84,13 @@ function showRating(rating) {
   if (rating == null)
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="m-2 text-muted text-center my-auto ">Rating: 0</p>
+        <p className="fa fa-star fa-custom m-2 ">Rating: 0</p>
       </div>
     );
   else {
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="m-2 text-muted text-center my-auto ">Rating: {rating}</p>
+        <p className="fa fa-star fa-custom m-2 "> {rating}</p>
       </div>
     );
   }
