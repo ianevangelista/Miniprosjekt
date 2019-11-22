@@ -8,6 +8,7 @@ export default class ArticleEdit extends Component<{
   articleId?: number
 }> {
   deleteHandler = (event: Event) => {
+    console.log(this.props.articleId);
     event.preventDefault();
     if (window.confirm("Er du sikker?")) {
       deleteNews(this.props.articleId)

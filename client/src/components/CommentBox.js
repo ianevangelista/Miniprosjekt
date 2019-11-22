@@ -83,7 +83,7 @@ function commentCard(comment) {
       <h5 className="commentAuthor">Brukernavn: {comment.brukernavn}</h5>
       <hr />
       <div className="row justify-content-between">
-        <div className="col-12">{comment.kommentar}</div>
+        <div className="col-12 my-2">{comment.kommentar}</div>
         <CommentDelete commentId={comment.kommentar_id} />
       </div>
     </div>

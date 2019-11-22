@@ -35,7 +35,7 @@ test("Get all comments from a news from DB", done => {
     done();
   }
 
-  commentDao.getBreakingNews(callback);
+  commentDao.getOne(callback);
 });
 
 test("Add news to DB", done => {

@@ -22,6 +22,7 @@ export function getLiveFeedNews() {
 }
 
 export function deleteNews(id) {
+  console.log(id);
   return axios.delete("http://localhost:8000/sak/" + id).then(response => {
     console.log(response);
   });
