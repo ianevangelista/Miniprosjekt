@@ -55,22 +55,8 @@ export default class Search extends Component {
           onChange={this.handleInputChange}
           onBlur={this.handleBlur}
         />
-        {suggestions(this.state.results)}
+        <Suggestions results={this.state.results} />
       </form>
     );
   }
-}
-
-function suggestions(results) {
-  const options = results.map(res => (
-    <li>
-      <NavLink key={res.id} exact to={"/sak/" + res.sak_id}>
-        <a className="custom-search text-uppercase font-italic bg-dark dropdown-item pl-0">
-          {res.overskrift}
-        </a>
-      </NavLink>
-    </li>
-  ));
-
-  return <ul style={{ padding: "0", listStyleType: "none" }}>{options}</ul>;
 }

@@ -15,6 +15,6 @@ INSERT INTO sak (sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategor
 
 INSERT INTO kommentar(kommentar_id, brukernavn, kommentar, sak_id) VALUES
     (1, "bruker1", "kommentar1", 1),
-    (2, "bruker2", "kommentar2", 2),
+    (2, "bruker2", "kommentar2", 1),
     (3, "bruker3", "kommentar3", 3),
     (4, "bruker4", "kommentar4", 4);

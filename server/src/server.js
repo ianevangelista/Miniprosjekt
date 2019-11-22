@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 const NewsDao = require("../../tests/newsdao");
 const CategoryDao = require("../../tests/categorydao");
+const CommentDao = require("../../tests/commentdao");
 
 var port = process.env.PORT || 8000;
 var pool = mysql.createPool({
@@ -34,7 +35,7 @@ app.listen(port, function() {
   console.log("info", "Server is running at port : " + 8000);
 });
 
-// TESTING
+// TESTING - NEWS
 
 let newsDao = new NewsDao(pool);
 app.get("", (req, res) => {
@@ -77,6 +78,8 @@ app.put("/sak/:sak_id", (req, res) => {
   });
 });
 
+// TESTING - CATEGORY
+
 let categoryDao = new CategoryDao(pool);
 app.get("/kategori", (req, res) => {
   console.log(": fikk request fra klient");
@@ -89,6 +92,34 @@ app.get("/kategori", (req, res) => {
 app.get("/kategori/:id", (req, res) => {
   console.log("/kategori/:id: fikk request fra klient");
   categoryDao.getOne(req.params.id, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+// TESTING - COMMENTS
+
+let commentDao = new CommentDao(pool);
+
+app.get("/kommentar/:sak_id", (req, res) => {
+  console.log("/sak/:sak_id: fikk request fra klient");
+  commentDao.getOne(req.params.sak_id, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+app.post("/registrerKommentar", (req, res) => {
+  console.log("Fikk POST-request fra klienten");
+  commentDao.createOne(req.body, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+app.delete("/kommentar/:kommentar_id", (req, res) => {
+  console.log("Fikk DELETE-request fra klient");
+  commentDao.deleteOne(req.params.kommentar_id, (status, data) => {
     res.status(status);
     res.json(data);
   });
