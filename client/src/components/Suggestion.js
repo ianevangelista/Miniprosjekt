@@ -14,13 +14,20 @@ const Suggestions = props => {
         exact
         to={"/sak/" + res.sak_id}
       >
-        <a className="custom-search text-uppercase font-italic bg-dark dropdown-item pl-0">
+        <a
+          className="custom-search px-1 text-uppercase font-italic bg-dark dropdown-item"
+          aria-labelledby="dropdownMenuLink"
+        >
           {res.overskrift}
         </a>
       </NavLink>
     </li>
   ));
 
-  return <ul style={{ padding: "0", listStyleType: "none" }}>{options}</ul>;
+  return (
+    <ul className="position-absolute p-0" style={{ listStyleType: "none" }}>
+      {options}
+    </ul>
+  );
 };
 export default Suggestions;

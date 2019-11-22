@@ -11,7 +11,7 @@ module.exports = class NewsDao extends Dao {
 
   getOne(id, callback) {
     super.query(
-      "SELECT overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet, tommelOpp, tommelNed FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
+      "SELECT overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, kategori_id, viktighet, tommelOpp, tommelNed FROM sak JOIN kategori USING(kategori_id) WHERE sak_id = ?",
       [id],
       callback
     );
@@ -27,7 +27,7 @@ module.exports = class NewsDao extends Dao {
       json.viktighet
     ];
     super.query(
-      "INSERT INTO sak (overskrift, ingress, innhold, bilde, kategori_id, viktighe, tommelOpp, tommelNed) values (?,?,?,?,?,?,?,?)",
+      "INSERT INTO sak (overskrift, ingress, innhold, bilde, kategori_id, viktighet) VALUES (?,?,?,?,?,?)",
       val,
       callback
     );

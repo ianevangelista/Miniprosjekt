@@ -31,6 +31,7 @@ export default class ArticleEdit extends Component<{
       bilde: this.props.articleImg,
       kategori_id: this.props.articleCategoryId,
       viktighet: this.props.articleImportancy,
+      sak_id: this.props.articleId,
 
       categories: [],
       showInputForm: false,
@@ -81,7 +82,7 @@ export default class ArticleEdit extends Component<{
         editNews(this.props.articleId, this.state)
           .then(response => {
             alert("Saken er endret");
-            window.location.hash = "";
+            window.location.reload();
           })
           .catch(error => {
             console.log(error);

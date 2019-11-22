@@ -60,7 +60,7 @@ export default class Navbar extends Component {
               <NavLink
                 className="nav-link dropdown-toggle shadow rounded"
                 exact
-                to="/sport"
+                to="/"
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"

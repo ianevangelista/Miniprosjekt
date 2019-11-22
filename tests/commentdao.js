@@ -3,7 +3,7 @@ const Dao = require("./dao.js");
 module.exports = class CommentDao extends Dao {
   getOne(id, callback) {
     super.query(
-      "SELECT kommentar_id, brukernavn, kommentar FROM kommentar JOIN sak USING(sak_id) WHERE sak_id = ?",
+      "SELECT kommentar_id, brukernavn, kommentar, kommentar.tidspunkt FROM kommentar JOIN sak USING(sak_id) WHERE sak_id = ?",
       [id],
       callback
     );
