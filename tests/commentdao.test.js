@@ -31,11 +31,12 @@ test("Get all comments from a news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBeGreaterThanOrEqual(2);
+    expect(data.length).toBe(2);
+    expect(data[0].overskrift).toBe("Test1");
     done();
   }
 
-  commentDao.getOne(callback);
+  categoryDao.getOne(1, callback);
 });
 
 test("Add news to DB", done => {
