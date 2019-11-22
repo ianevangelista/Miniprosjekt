@@ -20,7 +20,7 @@ CREATE TABLE sak  (
   kategori_id int(2) NOT NULL,
   viktighet int(1) NOT NULL,
   tommelOpp int(5),
-  tommelNed int(5)
+  tommelNed int(5),
   PRIMARY KEY (sak_id),
   FOREIGN KEY (kategori_id) REFERENCES kategori(kategori_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
