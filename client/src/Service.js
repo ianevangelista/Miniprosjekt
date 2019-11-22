@@ -102,3 +102,11 @@ export function getRating(tommelOpp, tommelNed) {
     return ((tommelOpp - Math.abs(tommelNed)) / totalVotes).toFixed(2);
   }
 }
+
+export function stringifyDate(date: String) {
+  return date.slice(0, 10);
+}
+
+export function stringifyTime(date: String) {
+  return date.slice(11, 16);
+}

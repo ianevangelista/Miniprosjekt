@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
 import "../styles/Article.css";
-import { getRating } from "../Service";
+import { getRating, stringifyDate, stringifyTime } from "../Service";
 
 export default class News extends Component<{
   title?: string,
@@ -55,13 +55,6 @@ export default class News extends Component<{
   }
 }
 
-function stringifyDate(date: String) {
-  return date.slice(0, 10);
-}
-
-function stringifyTime(date: String) {
-  return date.slice(11, 16);
-}
 
 function showRating(rating, up, down) {
   if (rating == null) return null;

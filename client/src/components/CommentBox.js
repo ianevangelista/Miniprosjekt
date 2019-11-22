@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getComments } from "../Service";
+import { getComments, stringifyDate, stringifyTime } from "../Service";
 import CommentForm from "./CommentForm";
 import CommentDelete from "./CommentDelete";
 import { Button } from "reactstrap";
@@ -83,7 +83,14 @@ function commentCard(comment) {
       <h5 className="commentAuthor">Brukernavn: {comment.brukernavn}</h5>
       <hr />
       <div className="row justify-content-between">
-        <div className="col-12 my-2">{comment.kommentar}</div>
+        <div className="col-12 my-2">
+          {comment.kommentar}
+          <p>
+            {stringifyDate(comment.tidspunkt)}{" "}
+            {stringifyTime(comment.tidspunkt)}
+          </p>
+        </div>
+
         <CommentDelete commentId={comment.kommentar_id} />
       </div>
     </div>

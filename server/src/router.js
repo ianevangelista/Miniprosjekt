@@ -270,7 +270,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT kommentar_id, brukernavn, kommentar FROM kommentar JOIN sak USING(sak_id) WHERE sak_id = ?",
+          "SELECT kommentar_id, brukernavn, kommentar, kommentar.tidspunkt FROM kommentar JOIN sak USING(sak_id) WHERE sak_id = ?",
           req.params.sak_id,
 
           (err, rows) => {

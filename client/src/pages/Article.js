@@ -5,7 +5,7 @@ import Footer from "../components/Footer.js";
 import Card from "../components/Card";
 import ArticleEdit from "../components/ArticleEdit";
 import ArticleDelete from "../components/ArticleDelete";
-import { getArticleDetails, getRating } from "../Service";
+import { getArticleDetails, getRating, stringifyTime, stringifyDate } from "../Service";
 import CommentBox from "../components/CommentBox";
 import CommentForm from "../components/CommentForm";
 import Rating from "../components/Rating";
@@ -92,12 +92,4 @@ export default class Article extends Component<{
       );
     }
   }
-}
-
-function stringifyDate(date: String) {
-  return date.slice(0, 10);
-}
-
-function stringifyTime(date: String) {
-  return date.slice(11, 16);
 }
