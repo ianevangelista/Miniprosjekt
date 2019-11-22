@@ -32,7 +32,7 @@ test("Get all comments from a news from DB", done => {
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(2);
-    expect(data[0].overskrift).toBe("Test1");
+    expect(data[0].brukernavn).toBe("bruker1");
     done();
   }
 

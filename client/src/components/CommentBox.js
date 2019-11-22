@@ -79,7 +79,7 @@ export default class CommentBox extends Component<{
 
 function commentCard(comment) {
   return (
-    <div className="comment p-1 border m-2">
+    <div className="comment p-1 border rounded m-2">
       <h5 className="commentAuthor">Brukernavn: {comment.brukernavn}</h5>
       <hr />
       <div className="row justify-content-between">
