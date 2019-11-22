@@ -33,5 +33,7 @@ CREATE TABLE kommentar  (
   tidspunkt varchar(100),
   sak_id int(2) NOT NULL,
   PRIMARY KEY (kommentar_id),
-  FOREIGN KEY (sak_id) REFERENCES sak(sak_id)
+  ADD CONSTRAINT fk_id
+    FOREIGN KEY (sak_id) REFERENCES sak(sak_id)
+    ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
