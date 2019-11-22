@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import News from "./News";
 import Sak from "./Sak";
 import { getBreakingNews } from "../Service";
+import { NavLink } from "react-router-dom";
 
 export default class BreakingNews extends Component {
   constructor(props) {
@@ -69,6 +70,7 @@ export default class BreakingNews extends Component {
               />
             </div>
           </div>
+
           <div className="card-columns mx-5">
             {newsList.map(news => newsCard(news))}
           </div>

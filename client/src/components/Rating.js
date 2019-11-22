@@ -58,39 +58,45 @@ export default class Rating extends Component<{
     const { rating, tommelOpp, tommelNed } = this.state;
     return (
       <div className="text-center my-3 col-9">
-        {showRating(
-          getRating(this.state.tommelOpp, this.state.tommelNed),
-          this.state.tommelOpp,
-          this.state.tommelNed
-        )}
+        {showRating(getRating(this.state.tommelOpp, this.state.tommelNed))}
         <Button
           name="tommelOpp"
           value={tommelOpp}
           className="fa fa-thumbs-up fa-custom m-2"
           onClick={this.upVote}
-        ></Button>
+        >
+          {" " + showLikes(this.state.tommelOpp)}
+        </Button>
         <Button
           name="tommelNed"
           value={tommelNed}
           className="fa fa-thumbs-down fa-custom m-2"
           onClick={this.downVote}
-        ></Button>
+        >
+          {" " + showLikes(this.state.tommelNed)}
+        </Button>
       </div>
     );
   }
 }
 
-function showRating(rating, up, down) {
-  if (rating == null) return null;
+function showRating(rating) {
+  if (rating == null)
+    return (
+      <div className="row justify-content-center align-items-center">
+        <p className="m-2 text-muted text-center my-auto ">Rating: 0</p>
+      </div>
+    );
   else {
-    if (up == null) up = 0;
-    if (down == null) down = 0;
     return (
       <div className="row justify-content-center align-items-center">
         <p className="m-2 text-muted text-center my-auto ">Rating: {rating}</p>
-        <p className="m-2 text-success text-center my-auto ">Likes: {up}</p>
-        <p className="m-2 text-danger text-center my-auto ">Dislikes: {down}</p>
       </div>
     );
   }
+}
+
+function showLikes(likes) {
+  if (likes == null) return 0;
+  else return likes;
 }

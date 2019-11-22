@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Suggestions from "./Suggestion";
 import { searchNews } from "../Service";
+import { NavLink } from "react-router-dom";
+import "../styles/Navbar.css";
 
 export default class Search extends Component {
   constructor(props) {
@@ -11,6 +13,10 @@ export default class Search extends Component {
       query: ""
     };
   }
+
+  handleBlur = () => {
+    this.setState({ results: [] });
+  };
 
   getInfo = () => {
     searchNews(this.state.query)
@@ -28,10 +34,12 @@ export default class Search extends Component {
         query: this.search.value
       },
       () => {
-        if (this.state.query && this.state.query.length > 1) {
-          if (this.state.query.length % 2 === 0) {
-            this.getInfo();
-          }
+        if (this.state.query.length > 1) {
+          this.getInfo();
+        } else {
+          this.setState({
+            results: []
+          });
         }
       }
     );
@@ -45,9 +53,24 @@ export default class Search extends Component {
           placeholder="Søk etter sak"
           ref={input => (this.search = input)}
           onChange={this.handleInputChange}
+          onBlur={this.handleBlur}
         />
-        <Suggestions results={this.state.results} />
+        {suggestions(this.state.results)}
       </form>
     );
   }
+}
+
+function suggestions(results) {
+  const options = results.map(res => (
+    <li>
+      <NavLink key={res.id} exact to={"/sak/" + res.sak_id}>
+        <a className="custom-search text-uppercase font-italic bg-dark dropdown-item pl-0">
+          {res.overskrift}
+        </a>
+      </NavLink>
+    </li>
+  ));
+
+  return <ul style={{ padding: "0", listStyleType: "none" }}>{options}</ul>;
 }

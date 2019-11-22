@@ -4,6 +4,7 @@ const app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 const NewsDao = require("../../tests/newsdao");
+const CategoryDao = require("../../tests/categorydao");
 
 var port = process.env.PORT || 8000;
 var pool = mysql.createPool({
@@ -71,6 +72,23 @@ app.delete("/sak/:sak_id", (req, res) => {
 app.put("/sak/:sak_id", (req, res) => {
   console.log("Fikk PUT-request fra klienten");
   newsDao.updateOne(req.body, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+let categoryDao = new CategoryDao(pool);
+app.get("/kategori", (req, res) => {
+  console.log(": fikk request fra klient");
+  categoryDao.getAll((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+app.get("/kategori/:id", (req, res) => {
+  console.log("/kategori/:id: fikk request fra klient");
+  categoryDao.getOne(req.params.id, (status, data) => {
     res.status(status);
     res.json(data);
   });

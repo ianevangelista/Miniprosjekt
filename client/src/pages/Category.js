@@ -62,6 +62,8 @@ function newsCard(news: Sak) {
       src={news.bilde}
       id={news.sak_id}
       lastUpdate={news.tidspunkt}
+      upvotes={news.tommelOpp}
+      downvotes={news.tommelNed}
     ></News>
   );
 }

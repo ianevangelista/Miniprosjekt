@@ -88,7 +88,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet FROM sak join kategori USING(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
+          "SELECT sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategori_navn, viktighet, tommelOpp, tommelNed FROM sak join kategori USING(kategori_id) WHERE kategori_id = ? ORDER BY tidspunkt DESC LIMIT 21",
           req.params.id,
 
           (err, rows) => {
@@ -144,7 +144,7 @@ module.exports = function(app, pool) {
         res.json({ error: "feil ved ved oppkobling" });
       } else {
         connection.query(
-          "SELECT * from sak WHERE overskrift like ? LIMIT 3",
+          "SELECT * from sak WHERE overskrift LIKE ? LIMIT 3",
           "%" + req.params.overskrift + "%",
 
           (err, rows) => {
