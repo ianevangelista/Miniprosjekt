@@ -30,6 +30,7 @@ CREATE TABLE kommentar  (
   kommentar_id int(11) NOT NULL AUTO_INCREMENT,
   brukernavn varchar(100) NOT NULL,
   kommentar varchar(300) NOT NULL,
+  tidspunkt varchar(100),
   sak_id int(2) NOT NULL,
   PRIMARY KEY (kommentar_id),
   FOREIGN KEY (sak_id) REFERENCES sak(sak_id)

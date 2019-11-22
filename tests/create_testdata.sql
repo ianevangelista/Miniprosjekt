@@ -13,8 +13,8 @@ INSERT INTO sak (sak_id, overskrift, ingress, innhold, tidspunkt, bilde, kategor
     (5, 'Test5', "test", "test", "2019-11-11 20:19:47", "bilde", 4, 2, 9, 1);
 
 
-INSERT INTO kommentar(kommentar_id, brukernavn, kommentar, sak_id) VALUES
-    (1, "bruker1", "kommentar1", 1),
-    (2, "bruker2", "kommentar2", 1),
-    (3, "bruker3", "kommentar3", 3),
-    (4, "bruker4", "kommentar4", 4);
+INSERT INTO kommentar(kommentar_id, brukernavn, kommentar, tidspunkt, sak_id) VALUES
+    (1, "bruker1", "kommentar1", "2019-11-11 20:19:47", 1),
+    (2, "bruker2", "kommentar2", "2019-11-11 20:19:47", 1),
+    (3, "bruker3", "kommentar3", "2019-11-11 20:19:47", 3),
+    (4, "bruker4", "kommentar4", "2019-11-11 20:19:47", 4);
