@@ -31,7 +31,7 @@ test("Get all comments from a news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBe(3);
+    expect(data.length).toBe(1);
     expect(data[0].brukernavn).toBe("dao1");
     done();
   }

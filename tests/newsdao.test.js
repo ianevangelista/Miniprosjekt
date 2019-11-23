@@ -67,7 +67,7 @@ test("Add news to DB", done => {
       ingress: "Ingress",
       innhold: "Dette er en test",
       bilde: "bilde",
-      kategori_id: 1,
+      kategori_id: 4,
       viktighet: 1
     },
     callback
