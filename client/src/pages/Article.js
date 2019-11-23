@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import "../styles/Article.css";
 import Navbar from "../components/Navbar.js";
@@ -15,14 +16,34 @@ import CommentBox from "../components/CommentBox";
 import CommentForm from "../components/CommentForm";
 import Rating from "../components/Rating";
 
-export default class Article extends Component<{
-  match: { params: { id: number } }
-}> {
-  constructor(props) {
+export default class Article extends Component<
+  {
+    match: { params: { id: number } }
+  },
+  {
+    news: {
+      overskrift: string,
+      ingress: string,
+      innhold: string,
+      kategori_navn: string,
+      kategori_id: number,
+      viktighet: number,
+      bilde: string,
+      tidspunkt: string,
+      tidspunktEndret: string,
+      skribent: string,
+      tommelOpp: number,
+      tommelNed: number
+    },
+    isLoaded: boolean,
+    errorMsg: any
+  }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
-      news: [],
+      news: {},
       isLoaded: false,
       errorMsg: null
     };
@@ -30,19 +51,19 @@ export default class Article extends Component<{
 
   componentDidMount() {
     getArticleDetails(this.props.match.params.id)
-      .then(response => {
+      .then((response: any) => {
         console.log(response);
         this.setState({ news: response.data[0] });
         this.setState({ isLoaded: true });
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.log(error);
         this.setState({ errorMsg: "Error retreiving data" });
       });
   }
   render() {
     const { news, isLoaded, errorMsg } = this.state;
-    const articleId = this.props.match.params.id;
+    const articleId: number = this.props.match.params.id;
     if (errorMsg) {
       return <div>{errorMsg.message}</div>;
     } else if (!isLoaded) {
@@ -51,7 +72,7 @@ export default class Article extends Component<{
       return (
         <div className="home-container bg-light">
           <Navbar />
-          <div className="row justify-content-center align-items-center">
+          <div className="row justify-content-center align-items-center custom-article">
             <Card cardSize="75">
               <img
                 className="img-fluid w-100"
@@ -81,8 +102,10 @@ export default class Article extends Component<{
                 <br />
 
                 <p className="content-custom">
-                  TRONDHEIM ({news.skribent}): {news.innhold}
+                  TRONDHEIM ({news.skribent}): {news.ingress}
                 </p>
+                <br />
+                <p>{news.innhold}</p>
                 <div className="my-3">
                   <ArticleEdit
                     articleWriter={news.skribent}

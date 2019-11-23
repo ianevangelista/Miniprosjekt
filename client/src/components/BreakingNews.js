@@ -1,11 +1,19 @@
+// @flow
 import React, { Component } from "react";
 import News from "./News";
 import Sak from "./Sak";
 import { getBreakingNews } from "../Service";
 import { NavLink } from "react-router-dom";
 
-export default class BreakingNews extends Component {
-  constructor(props) {
+export default class BreakingNews extends Component<
+  {},
+  {
+    news: Array<Sak>,
+    isLoaded: boolean,
+    errorMsg: any
+  }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -69,6 +77,7 @@ export default class BreakingNews extends Component {
                 lastUpdate={headline.tidspunktEndret}
                 upvotes={headline.tommelOpp}
                 downvotes={headline.tommelNed}
+                bgColor={""}
               />
             </div>
           </div>
@@ -92,6 +101,7 @@ function newsCard(news: Sak) {
       lastUpdate={news.tidspunktEndret}
       upvotes={news.tommelOpp}
       downvotes={news.tommelNed}
+      bgColor={""}
     ></News>
   );
 }

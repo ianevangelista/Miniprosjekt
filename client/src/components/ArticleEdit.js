@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "../styles/Article.css";
@@ -11,18 +9,37 @@ import {
 } from "reactstrap";
 import { editNews, getAllCategories } from "../Service";
 
-export default class ArticleEdit extends Component<{
-  articleWriter?: string,
-  articleId?: number,
-  articleTitle?: string,
-  articleIngress?: String,
-  articleContent?: string,
-  articleImg?: string,
+type State = {
+  skribent: string,
+  overskrift: string,
+  ingress: string,
+  innhold: string,
+  bilde: string,
+  kategori_id: string,
+  viktighet: string,
+  sak_id: string,
+  categories: Array<{ kategori_id: string, kategori_navn: string }>,
+  showInputForm: boolean,
+  dropdownOpen: boolean,
+  dropdownOpenImportancy: boolean,
+  valueCategory: string,
+  valueImportancy: string
+};
+
+type Props = {
+  articleWriter: string,
+  articleId: string,
+  articleTitle: string,
+  articleIngress: string,
+  articleContent: string,
+  articleImg: string,
   articleCategory?: string,
-  articleCategoryId?: number,
-  articleImportancy?: number
-}> {
-  constructor(props) {
+  articleCategoryId?: string,
+  articleImportancy?: string
+};
+
+export default class ArticleEdit extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -259,11 +276,11 @@ export default class ArticleEdit extends Component<{
     );
   }
 }
-function checkCategory(category) {
+function checkCategory(category: string) {
   return category.substring(0, 1);
 }
 
-function getCategories(category) {
+function getCategories(category: string) {
   return (
     <DropdownItem>
       {category.kategori_id}. {category.kategori_navn}

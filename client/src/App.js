@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import Register from "./pages/Register";
@@ -6,7 +7,7 @@ import Article from "./pages/Article";
 import Category from "./pages/Category";
 import Search from "./components/Search";
 
-class App extends Component {
+class App extends Component<{}> {
   render() {
     return (
       <HashRouter>

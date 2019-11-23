@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import News from "../components/News.js";
@@ -6,10 +7,31 @@ import Footer from "../components/Footer.js";
 import Sak from "../components/Sak";
 import { getCategory } from "../Service";
 
-export default class Category extends Component<{
-  match: { params: { id: number } }
-}> {
-  constructor(props) {
+export default class Category extends Component<
+  {
+    match: { params: { id: number } }
+  },
+  {
+    news: Array<{
+      sak_id: number,
+      overskrift: string,
+      ingress: string,
+      innhold: string,
+      kategori_navn: string,
+      kategori_id: number,
+      viktighet: number,
+      bilde: string,
+      tidspunkt: string,
+      tidspunktEndret: string,
+      skribent: string,
+      tommelOpp: number,
+      tommelNed: number
+    }>,
+    isLoaded: boolean,
+    errorMsg: any
+  }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -21,12 +43,15 @@ export default class Category extends Component<{
 
   componentDidMount() {
     getCategory(this.props.match.params.id)
-      .then(response => {
+      .then((response: any) => {
         console.log(response);
-        this.setState({ news: response.data });
-        this.setState({ isLoaded: true });
+        if (response.data.length === 0) console.log("Ingen saker");
+        else {
+          this.setState({ news: response.data });
+          this.setState({ isLoaded: true });
+        }
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.log(error);
         this.setState({ errorMsg: "Error retreiving data" });
       });
@@ -37,7 +62,12 @@ export default class Category extends Component<{
     if (errorMsg) {
       return <div>{errorMsg.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          Loading... (Ingen saker registrert i denne kategorien, vennligst gå
+          tilbake)
+        </div>
+      );
     } else {
       return (
         <div className="home-container bg-light ">
@@ -57,7 +87,21 @@ export default class Category extends Component<{
     }
   }
 }
-function newsCard(news: Sak) {
+function newsCard(news: {
+  sak_id: number,
+  overskrift: string,
+  ingress: string,
+  innhold: string,
+  kategori_navn: string,
+  kategori_id: number,
+  viktighet: number,
+  bilde: string,
+  tidspunkt: string,
+  tidspunktEndret: string,
+  skribent: string,
+  tommelOpp: number,
+  tommelNed: number
+}) {
   return (
     <News
       title={news.overskrift}
@@ -67,6 +111,7 @@ function newsCard(news: Sak) {
       lastUpdate={news.tidspunkt}
       upvotes={news.tommelOpp}
       downvotes={news.tommelNed}
+      bgColor={""}
     ></News>
   );
 }

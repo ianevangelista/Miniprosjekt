@@ -1,9 +1,10 @@
+// @flow
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const Suggestions = props => {
-  const options = props.results.map(res => (
+const Suggestions = (props: { results: Array<{sak_id: string, overskrift: string}> }) => {
+  const options: any = props.results.map(res => (
     <li>
       <NavLink
         key={res.sak_id}

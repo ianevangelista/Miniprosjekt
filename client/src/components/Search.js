@@ -1,11 +1,15 @@
+// @flow
 import React, { Component } from "react";
 import Suggestions from "./Suggestion";
 import { searchNews } from "../Service";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 
-export default class Search extends Component {
-  constructor(props) {
+export default class Search extends Component<
+  {},
+  { results: Array<{ sak_id: string, overskrift: string }>, query: string }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -20,13 +24,15 @@ export default class Search extends Component {
 
   getInfo = () => {
     searchNews(this.state.query)
-      .then(response => {
+      .then((response: any) => {
         this.setState({ results: response.data });
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.log(error);
       });
   };
+
+  search: HTMLInputElement;
 
   handleInputChange = () => {
     this.setState(
@@ -51,7 +57,7 @@ export default class Search extends Component {
         <input
           className="mt-4 rounded"
           placeholder="Søk etter sak"
-          ref={input => (this.search = input)}
+          ref={(input: any) => (this.search = input)}
           onChange={this.handleInputChange}
           onBlur={this.handleBlur}
         />

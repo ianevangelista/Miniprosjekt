@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
@@ -9,8 +10,24 @@ import {
 } from "reactstrap";
 import { addNews, getAllCategories } from "../Service";
 
-export default class Register extends Component {
-  constructor(props) {
+export default class Register extends Component<
+  {},
+  {
+    skribent: string,
+    overskrift: string,
+    ingress: string,
+    innhold: string,
+    bilde: string,
+    kategori_id: string,
+    viktighet: string,
+    categories: Array<{ kategori_id: string, kategori_navn: string }>,
+    dropdownOpen: boolean,
+    dropdownOpenImportancy: boolean,
+    valueCategory: string,
+    valueImportancy: string
+  }
+> {
+  constructor(props: any) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.select = this.select.bind(this);
@@ -37,16 +54,16 @@ export default class Register extends Component {
 
   componentDidMount() {
     getAllCategories()
-      .then(response => {
+      .then((response: any) => {
         console.log(response);
         this.setState({ categories: response });
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.log(error);
       });
   }
 
-  required() {
+  required(): boolean {
     if (
       this.state.skribent === "" ||
       this.state.overskrift === "" ||
@@ -61,19 +78,25 @@ export default class Register extends Component {
     return true;
   }
 
-  toggle() {
+  toggle: Function;
+  select: Function;
+  toggleImportancy: Function;
+  selectImportancy: Function;
+  required: Function;
+
+  toggle(): void {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
   }
 
-  toggleImportancy() {
+  toggleImportancy(): void {
     this.setState({
       dropdownOpenImportancy: !this.state.dropdownOpenImportancy
     });
   }
 
-  select(event) {
+  select(event: any): void {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       valueCategory: event.target.innerText
@@ -83,7 +106,7 @@ export default class Register extends Component {
     });
   }
 
-  selectImportancy(event) {
+  selectImportancy(event: any): void {
     this.setState({
       dropdownOpenImportancy: !this.state.dropdownOpenImportancy,
       valueImportancy: event.target.innerText
@@ -93,22 +116,22 @@ export default class Register extends Component {
     });
   }
 
-  changeHandler = e => {
+  changeHandler = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = (e: any) => {
     e.preventDefault();
     console.log(this.state);
     if (window.confirm("Er du sikker?")) {
       if (this.required()) {
         addNews(this.state)
-          .then(response => {
+          .then((response: any) => {
             console.log(response);
             alert("Saken er registrert");
             window.location.hash = "";
           })
-          .catch(error => {
+          .catch((error: any) => {
             console.log(error);
           });
       } else {
@@ -237,12 +260,15 @@ export default class Register extends Component {
     );
   }
 }
-function checkCategory(category) {
+function checkCategory(category: string) {
   console.log(category.substring(0, 1));
   return category.substring(0, 1);
 }
 
-function getCategories(category) {
+function getCategories(category: {
+  kategori_id: string,
+  kategori_navn: string
+}) {
   return (
     <DropdownItem>
       {category.kategori_id}. {category.kategori_navn}

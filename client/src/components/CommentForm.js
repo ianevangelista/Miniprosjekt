@@ -1,9 +1,13 @@
+// @flow
 import React, { Component } from "react";
 import { getComments, addComment } from "../Service";
-export default class CommentForm extends Component<{
-  articleId?: number
-}> {
-  constructor(props) {
+export default class CommentForm extends Component<
+  {
+    articleId?: any
+  },
+  { brukernavn: string, kommentar: string, sak_id: any }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -20,11 +24,11 @@ export default class CommentForm extends Component<{
     return true;
   }
 
-  changeHandler = e => {
+  changeHandler = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = (e: any) => {
     e.preventDefault();
     console.log(this.state);
     if (window.confirm("Er du sikker?")) {
@@ -45,7 +49,8 @@ export default class CommentForm extends Component<{
   };
 
   render() {
-    const { brukernavn, kommentar } = this.state;
+    const brukernavn: string = this.state.brukernavn;
+    const kommentar: string = this.state.kommentar;
     return (
       <div class="row justify-content-center align-items-center">
         <form className="form-group mt-4" onSubmit={this.submitHandler}>

@@ -1,8 +1,9 @@
+// @flow
 import React, { Component } from "react";
 
 export default class Card extends Component<{
-  children?: React.Node,
-  cardSize?: string
+  cardSize: string,
+  children?: any
 }> {
   render() {
     return (

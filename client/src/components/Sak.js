@@ -1,21 +1,25 @@
+// @flow
 export default class Sak {
   sak_id: number;
   overskrift: string;
   ingress: string;
   innhold: string;
-  tidspunkt: timestamp;
-  tidspunktEndret: timestamp;
+  tidspunkt: string;
+  tidspunktEndret: string;
   bilde: string;
   kategori_id: number;
+  kategori_navn: string;
   viktighet: number;
+  tommelOpp: number;
+  tommelNed: number;
 
   constructor(
     sak_id: number,
     overskrift: string,
     ingress: string,
     innhold: string,
-    tidspunkt: timestamp,
-    tidspunktEndret: timestamp,
+    tidspunkt: string,
+    tidspunktEndret: string,
     bilde: string,
     kategori_navn: string,
     viktighet: number,

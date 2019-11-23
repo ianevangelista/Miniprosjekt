@@ -1,7 +1,8 @@
+// @flow
 import React, { Component } from "react";
 import "../styles/Footer.css";
 
-export default class Footer extends Component {
+export default class Footer extends Component<{}> {
   render() {
     return (
       <footer className="custom-bg lab_social_icon_footer">

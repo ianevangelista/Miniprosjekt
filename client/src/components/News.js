@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Card from "./Card";
@@ -8,17 +9,16 @@ export default class News extends Component<{
   title?: string,
   ingress?: string,
   src?: string,
-  id?: string,
-  bgColor?: string,
-  written?: timestamp,
-  lastUpdate?: timestamp,
-  cardSize?: number,
-  upvotes?: number,
-  downvotes?: number
+  id: number,
+  bgColor: string,
+  written?: string,
+  lastUpdate: string,
+  upvotes: number,
+  downvotes: number
 }> {
   render() {
     return (
-      <Card cardSize={this.props.cardSize}>
+      <Card cardSize="">
         <NavLink
           className="text-body nav-link p-0"
           exact
@@ -27,11 +27,7 @@ export default class News extends Component<{
           <div className="col-sm-">
             <div className={"mx-auto bg-" + this.props.bgColor + " border-0"}>
               <div>
-                <img
-                  src={this.props.src}
-                  className="img-fluid mw-100 h-auto"
-                  alt={this.props.alt}
-                />
+                <img src={this.props.src} className="img-fluid mw-100 h-auto" />
               </div>
               <div className="card-text">
                 <p className="h2 text-center mt-2 mx-3">{this.props.title}</p>
@@ -56,7 +52,7 @@ export default class News extends Component<{
   }
 }
 
-function showRating(rating, up, down) {
+function showRating(rating: string | null, up: number, down: number) {
   if (rating == null) return null;
   else {
     if (up == null) up = 0;

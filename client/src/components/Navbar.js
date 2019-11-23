@@ -1,11 +1,15 @@
+// @flow
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import Search from "./Search";
 import "../styles/Navbar.css";
 import { getAllCategories } from "../Service";
 
-export default class Navbar extends Component {
-  constructor(props) {
+export default class Navbar extends Component<
+  {},
+  { categories: Array<{ kategori_id: number, kategori_navn: string }> }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -15,16 +19,19 @@ export default class Navbar extends Component {
 
   componentDidMount() {
     getAllCategories()
-      .then(response => {
+      .then((response: any) => {
         console.log(response);
         this.setState({ categories: response });
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.log(error);
       });
   }
   render() {
-    const { categories } = this.state;
+    const categories: Array<{
+      kategori_id: number,
+      kategori_navn: string
+    }> = this.state.categories;
     return (
       <nav
         class="navbar py-0 navbar-expand-md navbar-dark bg-primary sticky-top"
@@ -80,18 +87,18 @@ export default class Navbar extends Component {
   }
 }
 
-function getCategories(category) {
+function getCategories(props: { kategori_id: number, kategori_navn: string }) {
   return (
     <NavLink
       class="dropdown-item"
       onClick={() => {
-        window.location.hash = "/kategori/" + category.kategori_id;
+        window.location.hash = "/kategori/" + props.kategori_id;
         window.location.reload();
       }}
       exact
-      to={"/kategori/" + category.kategori_id}
+      to={"/kategori/" + props.kategori_id}
     >
-      {category.kategori_navn}
+      {props.kategori_navn}
     </NavLink>
   );
 }

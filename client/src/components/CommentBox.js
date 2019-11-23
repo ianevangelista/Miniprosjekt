@@ -1,13 +1,25 @@
+// @flow
 import React, { Component } from "react";
 import { getComments, stringifyDate, stringifyTime } from "../Service";
 import CommentForm from "./CommentForm";
 import CommentDelete from "./CommentDelete";
 import { Button } from "reactstrap";
 
-export default class CommentBox extends Component<{
-  articleId?: number
-}> {
-  constructor(props) {
+export default class CommentBox extends Component<
+  {
+    articleId?: number
+  },
+  {
+    comments: Array<{
+      kommentar_id: number,
+      brukernavn: string,
+      kommentar: string,
+      tidspunkt: string
+    }>,
+    showInputForm: boolean
+  }
+> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -18,17 +30,11 @@ export default class CommentBox extends Component<{
   }
 
   toggleForm = () => {
-    const { showInputForm } = this.state.showInputForm;
+    const showInputForm: boolean = this.state.showInputForm;
     this.setState({
       showInputForm: !this.state.showInputForm
     });
   };
-
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
-  }
 
   componentDidMount() {
     getComments(this.props.articleId)
@@ -38,7 +44,6 @@ export default class CommentBox extends Component<{
       })
       .catch(error => {
         console.log(error);
-        this.setState({ errorMsg: "Error retreiving data" });
       });
   }
   render() {
