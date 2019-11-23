@@ -43,7 +43,7 @@ test("Get one category with all its news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBe(2);
+    expect(data.length).toBe(1);
     expect(data[0].overskrift).toBe("Test1");
     done();
   }

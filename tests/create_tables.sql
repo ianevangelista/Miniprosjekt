@@ -32,7 +32,7 @@ CREATE TABLE kommentar  (
   kommentar_id int(11) NOT NULL AUTO_INCREMENT,
   brukernavn varchar(50) NOT NULL,
   kommentar varchar(200) NOT NULL,
-  tidspunkt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  tidspunkt timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   sak_id int(2) NOT NULL,
   PRIMARY KEY (kommentar_id),
   CONSTRAINT fk_id
