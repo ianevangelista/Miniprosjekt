@@ -38,7 +38,7 @@ test("Get all categories from DB", done => {
   categoryDao.getAll(callback);
 });
 
-test("Get one category with all news from DB", done => {
+test("Get one category with all its news from DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
