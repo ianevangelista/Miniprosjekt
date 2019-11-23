@@ -44,9 +44,7 @@ test("Get one news from DB", done => {
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(1);
-    expect(data[0].overskrift).toBe(
-      "Nikolai og Kasper kjøpte rekordantall med sko"
-    );
+    expect(data[0].overskrift).toBe("Test1");
     done();
   }
 

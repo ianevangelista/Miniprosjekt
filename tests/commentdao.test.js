@@ -52,7 +52,7 @@ test("Add comment to DB", done => {
     {
       brukernavn: "bruker",
       kommentar: "en kommentar",
-      sak_id: 2
+      sak_id: 5
     },
     callback
   );
