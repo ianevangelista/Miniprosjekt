@@ -19,22 +19,25 @@
 }
 
 .fa-custom {
-  color: black;
+  color: white;
   text-align: center;
-  font-family: "Georgia, serif";
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", sans-serif;
   font-weight: bold;
 }
 
 .fa-custom-likes {
   color: rgb(62, 204, 62);
   text-align: center;
-  font-family: "Georgia, serif";
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", sans-serif;
   font-weight: bold;
 }
 .fa-custom-dislikes {
   color: rgb(255, 45, 45);
   text-align: center;
-  font-family: "Georgia, serif";
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", sans-serif;
   font-weight: bold;
 }
 

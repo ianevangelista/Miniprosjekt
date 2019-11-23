@@ -12,6 +12,7 @@ import {
 import { editNews, getAllCategories } from "../Service";
 
 export default class ArticleEdit extends Component<{
+  articleWriter?: string,
   articleId?: number,
   articleTitle?: string,
   articleIngress?: String,
@@ -25,6 +26,7 @@ export default class ArticleEdit extends Component<{
     super(props);
 
     this.state = {
+      skribent: this.props.articleWriter,
       overskrift: this.props.articleTitle,
       ingress: this.props.articleIngress,
       innhold: this.props.articleContent,
@@ -63,6 +65,7 @@ export default class ArticleEdit extends Component<{
 
   required() {
     if (
+      this.state.skribent === "" ||
       this.state.overskrift === "" ||
       this.state.ingress === "" ||
       this.state.innhold === "" ||
@@ -135,6 +138,7 @@ export default class ArticleEdit extends Component<{
   }
   render() {
     const {
+      skribent,
       overskrift,
       ingress,
       innhold,
@@ -147,6 +151,17 @@ export default class ArticleEdit extends Component<{
       <div className="my-3">
         {this.state.showInputForm && (
           <form onSubmit={this.editHandler}>
+            <div class="form-group">
+              <label>Skribent:</label>
+              <input
+                type="text"
+                name="skribent"
+                value={skribent}
+                onChange={this.changeHandler}
+                class="form-control"
+                placeholder="Ditt navn"
+              ></input>
+            </div>
             <div class="form-group">
               <label>Tittel:</label>
               <input

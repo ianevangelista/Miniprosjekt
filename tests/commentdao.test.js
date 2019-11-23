@@ -31,15 +31,15 @@ test("Get all comments from a news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBe(2);
-    expect(data[0].brukernavn).toBe("bruker1");
+    expect(data.length).toBe(3);
+    expect(data[0].brukernavn).toBe("dao1");
     done();
   }
 
   commentDao.getOne(1, callback);
 });
 
-test("Add news to DB", done => {
+test("Add comment to DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
@@ -58,7 +58,7 @@ test("Add news to DB", done => {
   );
 });
 
-test("Delete one news from DB", done => {
+test("Delete one comment from DB", done => {
   function callback(status, data) {
     console.log(
       "Test callback: status=" + status + ", data.length=" + data.length
@@ -67,5 +67,5 @@ test("Delete one news from DB", done => {
     done();
   }
 
-  commentDao.deleteOne(4, callback);
+  commentDao.deleteOne(2, callback);
 });

@@ -63,7 +63,7 @@ function showRating(rating, up, down) {
     if (down == null) down = 0;
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="fa fa-star fa-custom m-2 "> {rating}</p>
+        <p className="fa fa-star m-2 "> {rating}</p>
         <p className="fa fa-thumbs-up fa-custom-likes m-2"> {up}</p>
         <p className="fa fa-thumbs-down fa-custom-dislikes m-2"> {down}</p>
       </div>

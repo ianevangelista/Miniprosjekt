@@ -63,7 +63,7 @@ export default class Article extends Component<{
                 <br />
                 <div className="row justify-content-center align-items-center">
                   <div id="info-text" className="text-center text-muted">
-                    Av: IAN EVANGELISTA | {stringifyDate(news.tidspunkt)} |{" "}
+                    Av: {news.skribent} | {stringifyDate(news.tidspunkt)} |{" "}
                     {stringifyTime(news.tidspunkt)}
                     <div className="m-3">
                       SIST ENDRET: {stringifyDate(news.tidspunktEndret)} |{" "}
@@ -81,10 +81,11 @@ export default class Article extends Component<{
                 <br />
 
                 <p className="content-custom">
-                  TRONDHEIM (Ian Evangelista): {news.innhold}
+                  TRONDHEIM ({news.skribent}): {news.innhold}
                 </p>
                 <div className="my-3">
                   <ArticleEdit
+                    articleWriter={news.skribent}
                     articleId={articleId}
                     articleTitle={news.overskrift}
                     articleIngress={news.ingress}

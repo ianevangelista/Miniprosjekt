@@ -31,7 +31,7 @@ test("Get breaking news from DB", done => {
     console.log(
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
-    expect(data.length).toBeGreaterThanOrEqual(4);
+    expect(data.length).toBeGreaterThanOrEqual(3);
     done();
   }
 
@@ -44,7 +44,9 @@ test("Get one news from DB", done => {
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(1);
-    expect(data[0].overskrift).toBe("Test1");
+    expect(data[0].overskrift).toBe(
+      "Nikolai og Kasper kjøpte rekordantall med sko"
+    );
     done();
   }
 
@@ -62,6 +64,7 @@ test("Add news to DB", done => {
 
   newsDao.createOne(
     {
+      skribent: "Tester"
       overskrift: "DAO-test",
       ingress: "Ingress",
       innhold: "Dette er en test",
@@ -82,7 +85,7 @@ test("Delete one news from DB", done => {
     done();
   }
 
-  newsDao.deleteOne(1, callback);
+  newsDao.deleteOne(2, callback);
 });
 
 test("Update one news from DB", done => {
@@ -99,6 +102,7 @@ test("Update one news from DB", done => {
 
   newsDao.updateOne(
     {
+      skribent: "Tester endret"
       overskrift: "DAO-test er endret",
       ingress: "Ingress endret",
       innhold: "Dette er en test som har blitt endret",

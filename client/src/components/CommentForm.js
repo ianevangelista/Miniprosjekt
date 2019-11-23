@@ -55,7 +55,7 @@ export default class CommentForm extends Component<{
             placeholder="Brukernavn"
             value={brukernavn}
             onChange={this.changeHandler}
-            className="mr-3"
+            className="mr-3 my-2"
           />
           <input
             type="text"
@@ -63,7 +63,7 @@ export default class CommentForm extends Component<{
             placeholder="Kommentar"
             value={kommentar}
             onChange={this.changeHandler}
-            className="mr-3 mb-4"
+            className="mr-3 my-2"
           />
           <button
             type="submit"

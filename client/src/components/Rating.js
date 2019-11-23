@@ -84,13 +84,13 @@ function showRating(rating) {
   if (rating == null)
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="fa fa-star fa-custom m-2 ">Rating: 0</p>
+        <p className="fa fa-star m-2 "> Rating: 0</p>
       </div>
     );
   else {
     return (
       <div className="row justify-content-center align-items-center">
-        <p className="fa fa-star fa-custom m-2 "> {rating}</p>
+        <p className="fa fa-star m-2 "> {rating}</p>
       </div>
     );
   }

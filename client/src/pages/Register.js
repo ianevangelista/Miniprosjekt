@@ -19,6 +19,7 @@ export default class Register extends Component {
     this.required = this.required.bind(this);
 
     this.state = {
+      skribent: "",
       overskrift: "",
       ingress: "",
       innhold: "",
@@ -47,6 +48,7 @@ export default class Register extends Component {
 
   required() {
     if (
+      this.state.skribent === "" ||
       this.state.overskrift === "" ||
       this.state.ingress === "" ||
       this.state.innhold === "" ||
@@ -117,6 +119,7 @@ export default class Register extends Component {
 
   render() {
     const {
+      skribent,
       overskrift,
       ingress,
       innhold,
@@ -138,6 +141,17 @@ export default class Register extends Component {
         </div>
 
         <form onSubmit={this.submitHandler}>
+          <div class="form-group mx-5">
+            <label>Skribent:</label>
+            <input
+              type="text"
+              name="skribent"
+              value={skribent}
+              onChange={this.changeHandler}
+              class="form-control"
+              placeholder="Navnet ditt"
+            ></input>
+          </div>
           <div class="form-group mx-5">
             <label>Tittel:</label>
             <input
