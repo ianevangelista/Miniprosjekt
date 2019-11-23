@@ -107,7 +107,7 @@ test("Update one news from DB", done => {
       bilde: "bilde",
       kategori_id: 1,
       viktighet: 1,
-      sak_id: 2
+      sak_id: 4
     },
     callback
   );
