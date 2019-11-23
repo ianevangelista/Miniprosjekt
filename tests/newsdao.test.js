@@ -105,7 +105,7 @@ test("Update one news from DB", done => {
       ingress: "Ingress endret",
       innhold: "Dette er en test som har blitt endret",
       bilde: "bilde",
-      kategori_id: 1,
+      kategori_id: 4,
       viktighet: 1,
       sak_id: 4
     },

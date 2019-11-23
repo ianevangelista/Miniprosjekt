@@ -67,5 +67,5 @@ test("Delete one comment from DB", done => {
     done();
   }
 
-  commentDao.deleteOne(2, callback);
+  commentDao.deleteOne(3, callback);
 });
