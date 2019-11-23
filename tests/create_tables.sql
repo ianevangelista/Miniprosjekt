@@ -17,7 +17,7 @@ CREATE TABLE sak  (
   ingress varchar(300) NOT NULL,
   innhold text DEFAULT NULL,
   tidspunkt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  tidspunktEndret timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  tidspunktEndret timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   bilde varchar(500) NOT NULL,
   kategori_id int(2) NOT NULL,
   viktighet int(1) NOT NULL,
