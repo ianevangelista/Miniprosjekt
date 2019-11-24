@@ -85,7 +85,12 @@ function getCurrentDate(separator: string = ".") {
   let date = newDate.getDate();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
-  var time = newDate.getHours() + ":" + newDate.getMinutes();
+  var time =
+    newDate.getHours() +
+    ":" +
+    (newDate.getMinutes().length != 1
+      ? "0" + newDate.getMinutes()
+      : newDate.getMinutes());
 
   return (
     <a className="text-white my-auto">
