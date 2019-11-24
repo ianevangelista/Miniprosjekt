@@ -147,7 +147,7 @@ test("Update one rating to a news from DB", done => {
         JSON.stringify(data)
     );
     expect(data.affectedRows).toBe(1);
-    expect(data.data[0].tommelNed).toBe(2);
+    expect(data[0].tommelNed).toBe(2);
     done();
   }
 
