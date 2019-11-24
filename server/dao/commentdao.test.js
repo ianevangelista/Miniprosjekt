@@ -32,11 +32,11 @@ test("Get all comments from a news from DB", done => {
       "Test callback: status=" + status + ", data=" + JSON.stringify(data)
     );
     expect(data.length).toBe(1);
-    expect(data[0].brukernavn).toBe("dao1");
+    expect(data[0].brukernavn).toBe("dao4");
     done();
   }
 
-  commentDao.getOne(1, callback);
+  commentDao.getOne(6, callback);
 });
 
 test("Add comment to DB", done => {
