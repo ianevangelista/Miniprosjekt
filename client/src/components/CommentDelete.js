@@ -7,6 +7,7 @@ import { deleteNews, deleteComment } from "../Service";
 export default class ArticleEdit extends Component<{
   commentId?: number
 }> {
+  // Sletter en bestemt kommentar
   deleteHandler = (event: Event) => {
     event.preventDefault();
     if (window.confirm("Er du sikker?")) {
@@ -26,7 +27,7 @@ export default class ArticleEdit extends Component<{
     return (
       <div className="col-1">
         <Button
-          className="btn-sm bg-danger fa fa-cut fa-custom"
+          className="btn-sm bg-danger fa fa-cut fa-custom border-0"
           onClick={this.deleteHandler}
         >
           <a className="fa fa-custom"> SLETT</a>

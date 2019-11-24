@@ -34,11 +34,11 @@ export default class Navbar extends Component<
     }> = this.state.categories;
     return (
       <nav
-        class="navbar py-0 navbar-expand-md navbar-dark bg-primary sticky-top"
+        class="navbar py-0 navbar-expand-lg navbar-dark bg-primary sticky-top"
         role="navigation"
       >
-        <a class="navbar-brand shadow rounded">
-          <NavLink className="nav-link" exact to="">
+        <a class="navbar-brand">
+          <NavLink className="nav-link" exact to="/">
             NTNEWS
           </NavLink>
         </a>
@@ -54,26 +54,26 @@ export default class Navbar extends Component<
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav">
             <li class="nav-item custom-nav-text mr-4 my-auto">
-              <NavLink className="nav-link shadow rounded" exact to="">
-                FORSIDE
+              <NavLink className="nav-link" exact to="/">
+                <a>FORSIDE</a>
               </NavLink>
             </li>
             <li class="nav-item custom-nav-text mr-4 my-auto">
-              <NavLink className="nav-link shadow rounded" exact to="/register">
-                NY SAK
+              <NavLink className="nav-link" exact to="/register">
+                <a>NY SAK</a>
               </NavLink>
             </li>
             <li class="nav-item custom-nav-text mr-4 my-auto dropdown show">
               <NavLink
-                className="nav-link dropdown-toggle shadow rounded"
+                className="nav-link dropdown-toggle"
                 exact
-                to="/"
+                to="/sak"
                 id="dropdownMenuLink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                KATEGORI
+                <a>KATEGORI</a>
               </NavLink>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {categories.map(cat => getCategories(cat))}

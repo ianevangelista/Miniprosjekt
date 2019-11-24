@@ -1,6 +1,6 @@
 module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
   // Henter ut alle sakene med viktighet 1
-  app.get("", (req, res) => {
+  app.get("/", (req, res) => {
     console.log(": fikk request fra klient");
     newsDao.getBreakingNews((status, data) => {
       res.status(status);
@@ -45,28 +45,10 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
   });
 
   app.get("/sisteNyheter", (req, res) => {
-    console.log("Fikk request fra klient");
-    pool.getConnection((err, connection) => {
-      console.log("Connected to database");
-      if (err) {
-        console.log("Feil ved kobling til databasen");
-        res.json({ error: "feil ved ved oppkobling" });
-      } else {
-        connection.query(
-          "SELECT sak_id, overskrift, tidspunkt FROM sak JOIN kategori USING(kategori_id) ORDER BY tidspunkt DESC LIMIT 5",
-
-          (err, rows) => {
-            connection.release();
-            if (err) {
-              console.log(err);
-              res.json({ error: "error querying" });
-            } else {
-              console.log(rows);
-              res.json(rows);
-            }
-          }
-        );
-      }
+    console.log(": fikk request fra klient");
+    newsDao.getLatestNews((status, data) => {
+      res.status(status);
+      res.json(data);
     });
   });
 
@@ -89,29 +71,10 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
 
   // Henter ut bestemte saker på bakgrunn av overskrift
   app.get("/sok/:overskrift", (req, res) => {
-    console.log("Fikk request fra klient");
-    pool.getConnection((err, connection) => {
-      console.log("Connected to database");
-      if (err) {
-        console.log("Feil ved kobling til databasen");
-        res.json({ error: "feil ved ved oppkobling" });
-      } else {
-        connection.query(
-          "SELECT * from sak WHERE overskrift LIKE ? LIMIT 5",
-          "%" + req.params.overskrift + "%",
-
-          (err, rows) => {
-            connection.release();
-            if (err) {
-              console.log(err);
-              res.json({ error: "error querying" });
-            } else {
-              console.log(rows);
-              res.json(rows);
-            }
-          }
-        );
-      }
+    console.log("/sok/:overskrift: fikk request fra klient");
+    newsDao.getByTitle(req.params.overskrift, (status, data) => {
+      res.status(status);
+      res.json(data);
     });
   });
 
@@ -144,29 +107,9 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
   // Oppdaterer rating gitt sak_id
   app.put("/rating/:sak_id", (req, res) => {
     console.log("Fikk PUT-request fra klienten");
-    pool.getConnection((err, connection) => {
-      if (err) {
-        console.log("Feil ved oppkobling");
-        res.json({ error: "feil ved oppkobling" });
-      } else {
-        console.log("Fikk databasekobling");
-        var val = [req.body.tommelOpp, req.body.tommelNed, req.body.sak_id];
-        console.log(val);
-        connection.query(
-          "UPDATE sak SET tommelOpp=?, tommelNed=? WHERE sak_id = ?",
-          val,
-          err => {
-            if (err) {
-              console.log(err);
-              res.status(500);
-              res.json({ error: "Feil ved insert" });
-            } else {
-              console.log("insert ok");
-              res.send("");
-            }
-          }
-        );
-      }
+    newsDao.updateRating(req.body, (status, data) => {
+      res.status(status);
+      res.json(data);
     });
   });
 };

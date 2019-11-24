@@ -41,6 +41,16 @@
   font-weight: bold;
 }
 
+.container-img {
+  overflow: hidden;
+}
+.img-custom {
+  transition: transform 0.2s;
+}
+.img-custom:hover {
+  transform: scale(1.05);
+}
+
 @media only screen and (max-width: 800px) {
   .card-columns {
     column-count: 1;

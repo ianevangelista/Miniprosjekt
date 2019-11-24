@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "../styles/Article.css";
@@ -16,8 +17,8 @@ type State = {
   innhold: string,
   bilde: string,
   kategori_id: string,
-  viktighet: string,
-  sak_id: string,
+  viktighet: string | null,
+  sak_id: number,
   categories: Array<{ kategori_id: string, kategori_navn: string }>,
   showInputForm: boolean,
   dropdownOpen: boolean,
@@ -28,16 +29,17 @@ type State = {
 
 type Props = {
   articleWriter: string,
-  articleId: string,
+  articleId: number,
   articleTitle: string,
   articleIngress: string,
   articleContent: string,
   articleImg: string,
-  articleCategory?: string,
-  articleCategoryId?: string,
-  articleImportancy?: string
+  articleCategory: string,
+  articleCategoryId: string,
+  articleImportancy: string
 };
 
+// Component for å endre en sak
 export default class ArticleEdit extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -69,6 +71,7 @@ export default class ArticleEdit extends Component<Props, State> {
     this.required = this.required.bind(this);
   }
 
+  // Henter inn alle kategorier
   componentDidMount() {
     getAllCategories()
       .then(response => {
@@ -80,6 +83,8 @@ export default class ArticleEdit extends Component<Props, State> {
       });
   }
 
+  // Sjekker om alle inputfelt er gyldige
+  required: Function;
   required() {
     if (
       this.state.skribent === "" ||
@@ -95,7 +100,8 @@ export default class ArticleEdit extends Component<Props, State> {
     return true;
   }
 
-  editHandler = e => {
+  // Funksjon som sender inn endret sak
+  editHandler = (e: any) => {
     e.preventDefault();
     if (window.confirm("Er du sikker?")) {
       if (this.required()) {
@@ -111,30 +117,36 @@ export default class ArticleEdit extends Component<Props, State> {
     }
   };
 
-  changeHandler = e => {
+  // Endrer på state
+  changeHandler = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // Viser form
+  toggleForm: Function;
   toggleForm = () => {
-    const { showInputForm } = this.state.showInputForm;
+    const showInputForm: boolean = this.state.showInputForm;
     this.setState({
       showInputForm: !this.state.showInputForm
     });
   };
 
+  toggle: Function;
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
   }
 
+  toggleImportancy: Function;
   toggleImportancy() {
     this.setState({
       dropdownOpenImportancy: !this.state.dropdownOpenImportancy
     });
   }
 
-  select(event) {
+  select: Function;
+  select(event: any) {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
       valueCategory: event.target.innerText
@@ -144,7 +156,8 @@ export default class ArticleEdit extends Component<Props, State> {
     });
   }
 
-  selectImportancy(event) {
+  selectImportancy: Function;
+  selectImportancy(event: any) {
     this.setState({
       dropdownOpenImportancy: !this.state.dropdownOpenImportancy,
       valueImportancy: event.target.innerText
@@ -226,7 +239,7 @@ export default class ArticleEdit extends Component<Props, State> {
             </div>
             <div className="row">
               <div class="form-group col-4">
-                <label>Kategori:</label>
+                <label>Velg kategori:</label>
                 <ButtonDropdown
                   className="ml-3"
                   isOpen={this.state.dropdownOpen}
@@ -242,7 +255,7 @@ export default class ArticleEdit extends Component<Props, State> {
                 </ButtonDropdown>
               </div>
               <div class="form-group col-4">
-                <label>Viktighet:</label>
+                <label>Velg viktighet:</label>
                 <ButtonDropdown
                   className="ml-3"
                   isOpen={this.state.dropdownOpenImportancy}
@@ -258,7 +271,7 @@ export default class ArticleEdit extends Component<Props, State> {
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
-              <div className="col-4">
+              <div className="ml-auto mr-0">
                 <button
                   type="submit"
                   className="btn btn-success fa fa-save fa-custom"
@@ -276,11 +289,17 @@ export default class ArticleEdit extends Component<Props, State> {
     );
   }
 }
+
+// Returnerer kategori
 function checkCategory(category: string) {
   return category.substring(0, 1);
 }
 
-function getCategories(category: string) {
+// Viser alle kategoriene
+function getCategories(category: {
+  kategori_id: string,
+  kategori_navn: string
+}) {
   return (
     <DropdownItem>
       {category.kategori_id}. {category.kategori_navn}
@@ -288,7 +307,8 @@ function getCategories(category: string) {
   );
 }
 
-function checkImportancy(importancy: string) {
+// Sjekker viktighet
+function checkImportancy(importancy: any) {
   if (importancy.length > 1) return null;
   else return importancy;
 }

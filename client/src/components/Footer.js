@@ -22,14 +22,13 @@ export default class Footer extends Component<{}> {
                 <div className="row">
                   <p className="col-sm">
                     <i class="fa fa-home mr-3"></i>
-                    <a href="https://www.google.no/maps/place/Blarney+Castle/@51.9290955,-8.5730734,17z/data=!3m1!4b1!4m5!3m4!1s0x4844903d38df44b7:0xafb7c3638c8b47c8!8m2!3d51.9290922!4d-8.5708847">
-                      Holtermanns veg 31B, Trondheim
-                      <br /> Trøndelag, Norge
+                    <a href="https://www.google.com/maps/place/NTNU+Akrinn/@63.4286539,10.3868456,17z/data=!3m1!4b1!4m5!3m4!1s0x466d318553fe01c5:0xcda908aebfe698c1!8m2!3d63.4286539!4d10.3890343">
+                      Sverres gate 12, 7012 Trondheim
                     </a>
                   </p>
                   <p className="col-sm">
                     <i class="fa fa-envelope mr-3"></i>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suppoty@irish.com&su=THIS-WEBSITE-IS-SICK&body=DearIrishLtd&bcc=irish@ltd.com">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@ntnewscom&su=Hendvendelse&body=Til NTNEWS&bcc=support@ntnewscom">
                       support@ntnews.com
                     </a>
                   </p>
@@ -59,19 +58,13 @@ export default class Footer extends Component<{}> {
                     className="fa fa-facebook-square fa-3x social m-2"
                   ></i>
                 </a>
-                <a href="https://twitter.com/realDonaldTrump">
+                <a href="https://twitter.com/">
                   <i
                     id="social-tw"
                     className="fa fa-twitter-square fa-3x social m-2"
                   ></i>
                 </a>
-                <a href="#">
-                  <i
-                    id="social-gp"
-                    className="fa fa-google-plus-square fa-3x social m-2"
-                  ></i>
-                </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suppoty@irish.com&su=THIS-WEBSITE-IS-SICK&body=DearIrishLtd&bcc=irish@ltd.com">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@ntnewscom&su=Hendvendelse&body=Til NTNEWS&bcc=support@ntnewscom">
                   <i
                     id="social-em"
                     className="fa fa-envelope-square fa-3x social m-2"

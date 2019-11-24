@@ -36,6 +36,7 @@ export default class CommentBox extends Component<
     });
   };
 
+  // Henter inn alle kommentarer til en bestemt sak
   componentDidMount() {
     getComments(this.props.articleId)
       .then(response => {
@@ -82,6 +83,7 @@ export default class CommentBox extends Component<
   }
 }
 
+// Funksjon som vier fram hele kommentarboksen med alle kommentarer
 function commentCard(comment) {
   return (
     <div className="comment p-1 border rounded m-2">

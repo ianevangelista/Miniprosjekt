@@ -98,7 +98,7 @@ export function rateNews(id: number, state: any) {
 
 export function getRating(tommelOpp: number, tommelNed: number) {
   var totalVotes: number = tommelOpp + tommelNed;
-  if (totalVotes == 0) return null;
+  if (totalVotes === 0) return null;
   else {
     return ((tommelOpp - tommelNed) / totalVotes).toFixed(2);
   }

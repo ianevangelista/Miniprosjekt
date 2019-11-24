@@ -26,11 +26,14 @@ export default class News extends Component<{
         >
           <div className="col-sm-">
             <div className={"mx-auto bg-" + this.props.bgColor + " border-0"}>
-              <div>
-                <img src={this.props.src} className="img-fluid mw-100 h-auto" />
+              <div className="container-img">
+                <img
+                  src={this.props.src}
+                  className="img-fluid mw-100 h-auto img-custom"
+                />
               </div>
               <div className="card-text">
-                <p className="h2 text-center mt-2 mx-3">{this.props.title}</p>
+                <p className="h2 text-center mt-3 mx-3">{this.props.title}</p>
               </div>
             </div>
             <p className="text-muted text-center my-3 mx-3">

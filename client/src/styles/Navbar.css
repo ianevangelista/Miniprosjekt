@@ -4,6 +4,11 @@
   color: #ffffff;
   font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold";
   font-size: 30px;
+  transition: transform 0.2s;
+}
+
+.navbar-brand .nav-link:hover {
+  transform: scale(1.1);
 }
 
 .navbar-brand {
@@ -26,14 +31,16 @@
   text-decoration-line: underline;
 }
 
+.navbar-dark .navbar-nav > .nav-item a {
+  transition: transform 0.2s;
+}
+
 .navbar-dark .navbar-nav > .nav-item > a:hover {
   color: black;
 }
 
-.navbar-dark .navbar-nav > .nav-item:hover {
-  background: rgba(204, 232, 250, 0.5);
-  box-shadow: 5px 5px;
-  border-radius: 5px;
+.navbar-dark .navbar-nav > .nav-item a:hover {
+  transform: scale(1.1);
 }
 
 .navbar-dark .navbar-nav > .nav-item > a {
@@ -46,4 +53,10 @@
 
 .custom-search {
   font-size: smaller;
+}
+
+@media only screen and (max-width: 992px) {
+  .navbar-dark .navbar-nav > .nav-item a:hover {
+    transform: scale(1.05);
+  }
 }

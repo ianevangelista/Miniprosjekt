@@ -23,6 +23,7 @@ export default class BreakingNews extends Component<
     };
   }
 
+  // Henter inn nyeste saker med viktighet 1
   componentDidMount() {
     getBreakingNews()
       .then(response => {
@@ -90,6 +91,8 @@ export default class BreakingNews extends Component<
     }
   }
 }
+
+// Bruker News-komponenten slik man videre kan bruke det i map
 function newsCard(news: Sak) {
   return (
     <News

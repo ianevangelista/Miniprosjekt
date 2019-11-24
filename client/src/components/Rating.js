@@ -31,8 +31,15 @@ export default class Rating extends Component<
   }
 
   componentDidMount() {
-    let disabled = false;
-    if (localStorage.getItem("Reaksjon") === "true") disabled = true;
+    let disabled: boolean = false;
+    let sak_id: number = this.state.sak_id;
+
+    if (
+      localStorage.getItem("Reaksjon") === "true" &&
+      localStorage.getItem("id" + sak_id) === this.state.sak_id.toString()
+    ) {
+      disabled = true;
+    }
     this.setState({ disabled: disabled });
   }
 
@@ -49,8 +56,11 @@ export default class Rating extends Component<
   };
 
   upVote = () => {
-    let disabled = !this.state.disabled;
+    let disabled: boolean = !this.state.disabled;
+    let sak_id: number = this.state.sak_id;
     localStorage.setItem("Reaksjon", "true");
+
+    localStorage.setItem("id" + sak_id, sak_id.toString());
 
     let newCount: number = this.state.tommelOpp + 1;
     this.setState(
@@ -64,8 +74,11 @@ export default class Rating extends Component<
   };
 
   downVote = () => {
-    let disabled = !this.state.disabled;
+    let disabled: boolean = !this.state.disabled;
+    let sak_id: number = this.state.sak_id;
     localStorage.setItem("Reaksjon", "true");
+
+    localStorage.setItem("id" + sak_id, sak_id.toString());
 
     let newCount: number = this.state.tommelNed + 1;
     this.setState(

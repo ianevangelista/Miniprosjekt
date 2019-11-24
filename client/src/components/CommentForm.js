@@ -17,6 +17,7 @@ export default class CommentForm extends Component<
     };
   }
 
+  // Sjekker om input er gyldig
   required() {
     if (this.state.brukernavn === "" || this.state.kommentar === "") {
       return false;
@@ -28,6 +29,7 @@ export default class CommentForm extends Component<
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // Lager en ny kommentar for en sak
   submitHandler = (e: any) => {
     e.preventDefault();
     console.log(this.state);

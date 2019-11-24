@@ -155,11 +155,9 @@ export default class Register extends Component<
       <div>
         <Navbar />
         <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <h1 class="display-4">Registrer en sak!</h1>
-            <p class="lead">
-              Her kan du laste opp en nyhetssak til vår nettside.
-            </p>
+          <div class="mx-5">
+            <h3 class="display-4">Registrer saken din her!</h3>
+            Her kan du laste opp en nyhetssak til vår nettside.
           </div>
         </div>
 
@@ -220,40 +218,48 @@ export default class Register extends Component<
               placeholder="Skriv inn bilde-URL til din sak"
             ></input>
           </div>
-          <div class="form-group mx-5">
-            <ButtonDropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggle}
-            >
-              <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
-              <DropdownMenu onClick={this.select} onChange={this.changeHandler}>
-                {categories.map(category => getCategories(category))}
-              </DropdownMenu>
-            </ButtonDropdown>
-          </div>
-          <div class="form-group mx-5">
-            <ButtonDropdown
-              isOpen={this.state.dropdownOpenImportancy}
-              toggle={this.toggleImportancy}
-            >
-              <DropdownToggle>{this.state.valueImportancy}</DropdownToggle>
-              <DropdownMenu
-                onClick={this.selectImportancy}
-                onChange={this.changeHandler}
-              >
-                <DropdownItem>1</DropdownItem>
-                <DropdownItem>2</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
-          </div>
+          <div className="row">
+            <div class="form-group ml-5">
+              <label className="mr-2">Velg kategori:</label>
 
-          <button
-            type="submit"
-            class="btn btn-danger mx-5 btn-lg fa fa-send fa-custom"
-          >
-            {" "}
-            SEND INN
-          </button>
+              <ButtonDropdown
+                isOpen={this.state.dropdownOpen}
+                toggle={this.toggle}
+              >
+                <DropdownToggle>{this.state.valueCategory}</DropdownToggle>
+                <DropdownMenu
+                  onClick={this.select}
+                  onChange={this.changeHandler}
+                >
+                  {categories.map(category => getCategories(category))}
+                </DropdownMenu>
+              </ButtonDropdown>
+            </div>
+            <div class="form-group mx-3">
+              <label className="mr-2">Velg viktighet:</label>
+
+              <ButtonDropdown
+                isOpen={this.state.dropdownOpenImportancy}
+                toggle={this.toggleImportancy}
+              >
+                <DropdownToggle>{this.state.valueImportancy}</DropdownToggle>
+                <DropdownMenu
+                  onClick={this.selectImportancy}
+                  onChange={this.changeHandler}
+                >
+                  <DropdownItem>1</DropdownItem>
+                  <DropdownItem>2</DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-danger mr-5 fa fa-send fa-custom ml-auto mr-0"
+            >
+              {" "}
+              SEND INN
+            </button>
+          </div>
         </form>
         <Footer />
       </div>

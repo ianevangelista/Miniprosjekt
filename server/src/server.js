@@ -3,9 +3,9 @@ const mysql = require("mysql");
 const app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const NewsDao = require("../../tests/newsdao");
-const CategoryDao = require("../../tests/categorydao");
-const CommentDao = require("../../tests/commentdao");
+const NewsDao = require("../dao/newsdao");
+const CategoryDao = require("../dao/categorydao");
+const CommentDao = require("../dao/commentdao");
 
 var port = process.env.PORT || 8000;
 var pool = mysql.createPool({

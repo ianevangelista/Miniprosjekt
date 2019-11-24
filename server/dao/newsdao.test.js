@@ -38,6 +38,31 @@ test("Get breaking news from DB", done => {
   newsDao.getBreakingNews(callback);
 });
 
+test("Get latest news from DB", done => {
+  function callback(status, data) {
+    console.log(
+      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+    );
+    expect(data.length).toBe(5);
+    done();
+  }
+
+  newsDao.getLatestNews(callback);
+});
+
+test("Get news by title from DB", done => {
+  function callback(status, data) {
+    console.log(
+      "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+    );
+    expect(data.length).toBe(1);
+    expect(data[0].overskrift).toBe("Test1");
+    done();
+  }
+
+  newsDao.getByTitle("Test1", callback);
+});
+
 test("Get one news from DB", done => {
   function callback(status, data) {
     console.log(
@@ -94,7 +119,7 @@ test("Update one news from DB", done => {
         ", data.length=" +
         JSON.stringify(data)
     );
-    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    expect(data.affectedRows).toBe(1);
     done();
   }
 
@@ -108,6 +133,29 @@ test("Update one news from DB", done => {
       kategori_id: 4,
       viktighet: 1,
       sak_id: 4
+    },
+    callback
+  );
+});
+
+test("Update one rating to a news from DB", done => {
+  function callback(status, data) {
+    console.log(
+      "Test callback: status=" +
+        status +
+        ", data.length=" +
+        JSON.stringify(data)
+    );
+    expect(data.affectedRows).toBe(1);
+    expect(data.data[0].tommelNed).toBe(2);
+    done();
+  }
+
+  newsDao.updateOne(
+    {
+      tommelOpp: 9,
+      tommelNed: 2,
+      sak_id: 6
     },
     callback
   );

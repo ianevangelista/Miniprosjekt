@@ -6,14 +6,8 @@ import Footer from "../components/Footer.js";
 import Card from "../components/Card";
 import ArticleEdit from "../components/ArticleEdit";
 import ArticleDelete from "../components/ArticleDelete";
-import {
-  getArticleDetails,
-  getRating,
-  stringifyTime,
-  stringifyDate
-} from "../Service";
+import { getArticleDetails, stringifyTime, stringifyDate } from "../Service";
 import CommentBox from "../components/CommentBox";
-import CommentForm from "../components/CommentForm";
 import Rating from "../components/Rating";
 
 export default class Article extends Component<
@@ -26,8 +20,8 @@ export default class Article extends Component<
       ingress: string,
       innhold: string,
       kategori_navn: string,
-      kategori_id: number,
-      viktighet: number,
+      kategori_id: string,
+      viktighet: string,
       bilde: string,
       tidspunkt: string,
       tidspunktEndret: string,
