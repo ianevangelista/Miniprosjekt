@@ -151,7 +151,7 @@ test("Update one rating to a news from DB", done => {
     done();
   }
 
-  newsDao.updateOne(
+  newsDao.updateRating(
     {
       tommelOpp: 9,
       tommelNed: 2,
