@@ -17,8 +17,8 @@ var pool = mysql.createPool({
 let categoryDao = new CategoryDao(pool);
 
 beforeAll(done => {
-  runsqlfile("tests/create_tables.sql", pool, () => {
-    runsqlfile("tests/create_testdata.sql", pool, done);
+  runsqlfile("dao/create_tables.sql", pool, () => {
+    runsqlfile("dao/create_testdata.sql", pool, done);
   });
 });
 
