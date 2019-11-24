@@ -87,15 +87,18 @@ export default class CommentBox extends Component<
 function commentCard(comment) {
   return (
     <div className="comment p-1 border rounded m-2">
-      <h5 className="commentAuthor">Brukernavn: {comment.brukernavn}</h5>
+      <div className="row m-2">
+        <h5>Brukernavn: {comment.brukernavn}</h5>
+        <p className="text-muted ml-auto mr-0">
+          Kommenterte den: {stringifyDate(comment.tidspunkt)}{" "}
+          {stringifyTime(comment.tidspunkt)}
+        </p>
+      </div>
       <hr />
       <div className="row justify-content-between">
         <div className="col-12 my-2">
           {comment.kommentar}
-          <p>
-            {stringifyDate(comment.tidspunkt)}{" "}
-            {stringifyTime(comment.tidspunkt)}
-          </p>
+          <p></p>
         </div>
 
         <CommentDelete commentId={comment.kommentar_id} />
