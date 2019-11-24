@@ -44,6 +44,7 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
     });
   });
 
+  // Henter de fem siste nyhetene uansett viktighet
   app.get("/sisteNyheter", (req, res) => {
     console.log(": fikk request fra klient");
     newsDao.getLatestNews((status, data) => {
@@ -52,6 +53,7 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
     });
   });
 
+  // Henter alle kategoriene
   app.get("/kategori", (req, res) => {
     console.log(": fikk request fra klient");
     categoryDao.getAll((status, data) => {
@@ -87,6 +89,7 @@ module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
     });
   });
 
+  // Lager en kommentar
   app.post("/registrerKommentar", (req, res) => {
     console.log("Fikk POST-request fra klienten");
     commentDao.createOne(req.body, (status, data) => {

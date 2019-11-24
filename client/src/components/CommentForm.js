@@ -54,7 +54,7 @@ export default class CommentForm extends Component<
     const brukernavn: string = this.state.brukernavn;
     const kommentar: string = this.state.kommentar;
     return (
-      <div class="row justify-content-center align-items-center">
+      <div className="row justify-content-center align-items-center">
         <form className="form-group mt-4" onSubmit={this.submitHandler}>
           <input
             type="text"
@@ -74,7 +74,7 @@ export default class CommentForm extends Component<
           />
           <button
             type="submit"
-            class="btn btn-danger btn-sm fa fa-send fa-custom"
+            className="btn btn-danger btn-sm fa fa-send fa-custom"
           >
             {" "}
             SEND INN

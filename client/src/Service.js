@@ -2,38 +2,23 @@
 import axios from "axios";
 
 export function getBreakingNews() {
-  return axios.get("http://localhost:8000/").then(response => {
-    console.log(response);
-    return response.data;
-  });
+  return axios.get("http://localhost:8000/");
 }
 
 export function getAllCategories() {
-  return axios.get("http://localhost:8000/kategori").then(response => {
-    console.log(response);
-    return response.data;
-  });
+  return axios.get("http://localhost:8000/kategori");
 }
 
 export function getLiveFeedNews() {
-  return axios.get("http://localhost:8000/sisteNyheter").then(response => {
-    console.log(response);
-    return response.data;
-  });
+  return axios.get("http://localhost:8000/sisteNyheter");
 }
 
 export function deleteNews(id: number | any) {
-  console.log(id);
-  return axios.delete("http://localhost:8000/sak/" + id).then(response => {
-    console.log(response);
-  });
+  return axios.delete("http://localhost:8000/sak/" + id);
 }
 
 export function editNews(id: number, state: any) {
-  return axios.put("http://localhost:8000/sak/" + id, state).then(response => {
-    console.log(response);
-    return response.data;
-  });
+  return axios.put("http://localhost:8000/sak/" + id, state);
 }
 
 export function searchNews(query: string) {
@@ -41,59 +26,31 @@ export function searchNews(query: string) {
 }
 
 export function getArticleDetails(id: number) {
-  return axios.get("http://localhost:8000/sak/" + id).then(response => {
-    console.log(response);
-    return response;
-  });
+  return axios.get("http://localhost:8000/sak/" + id);
 }
 
 export function getCategory(id: number) {
-  return axios.get("http://localhost:8000/kategori/" + id).then(response => {
-    console.log(response);
-    return response;
-  });
+  return axios.get("http://localhost:8000/kategori/" + id);
 }
 
 export function addNews(state: any) {
-  return axios
-    .post("http://localhost:8000/registrerSak", state)
-    .then(response => {
-      console.log(response);
-      return response.data;
-    });
+  return axios.post("http://localhost:8000/registrerSak", state);
 }
 
 export function getComments(id: number | any) {
-  return axios.get("http://localhost:8000/kommentar/" + id).then(response => {
-    console.log(response);
-    return response;
-  });
+  return axios.get("http://localhost:8000/kommentar/" + id);
 }
 
 export function addComment(state: any) {
-  return axios
-    .post("http://localhost:8000/registrerKommentar", state)
-    .then(response => {
-      console.log(response);
-      return response.data;
-    });
+  return axios.post("http://localhost:8000/registrerKommentar", state);
 }
 
 export function deleteComment(id: number | any) {
-  return axios
-    .delete("http://localhost:8000/kommentar/" + id)
-    .then(response => {
-      console.log(response);
-    });
+  return axios.delete("http://localhost:8000/kommentar/" + id);
 }
 
 export function rateNews(id: number, state: any) {
-  return axios
-    .put("http://localhost:8000/rating/" + id, state)
-    .then(response => {
-      console.log(response);
-      return response.data;
-    });
+  return axios.put("http://localhost:8000/rating/" + id, state);
 }
 
 export function getRating(tommelOpp: number, tommelNed: number) {

@@ -43,6 +43,7 @@ export default class Article extends Component<
     };
   }
 
+  // Henter inn alle sak-detaljer
   componentDidMount() {
     getArticleDetails(this.props.match.params.id)
       .then((response: any) => {

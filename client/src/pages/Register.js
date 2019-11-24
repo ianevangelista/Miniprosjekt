@@ -52,17 +52,19 @@ export default class Register extends Component<
     };
   }
 
+  // Henter inn alle kategorier
   componentDidMount() {
     getAllCategories()
       .then((response: any) => {
-        console.log(response);
-        this.setState({ categories: response });
+        console.log(response.data);
+        this.setState({ categories: response.data });
       })
       .catch((error: any) => {
         console.log(error);
       });
   }
 
+  // Input-validering
   required(): boolean {
     if (
       this.state.skribent === "" ||
@@ -116,10 +118,12 @@ export default class Register extends Component<
     });
   }
 
+  // Håndterer endringer i state
   changeHandler = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // Håndterer endelig innsending av ny sak
   submitHandler = (e: any) => {
     e.preventDefault();
     console.log(this.state);
@@ -154,72 +158,72 @@ export default class Register extends Component<
     return (
       <div>
         <Navbar />
-        <div class="jumbotron jumbotron-fluid">
-          <div class="mx-5">
-            <h3 class="display-4">Registrer saken din her!</h3>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="mx-5">
+            <h3 className="display-4">Registrer saken din her!</h3>
             Her kan du laste opp en nyhetssak til vår nettside.
           </div>
         </div>
 
         <form onSubmit={this.submitHandler}>
-          <div class="form-group mx-5">
+          <div className="form-group mx-5">
             <label>Skribent:</label>
             <input
               type="text"
               name="skribent"
               value={skribent}
               onChange={this.changeHandler}
-              class="form-control"
+              className="form-control"
               placeholder="Navnet ditt"
             ></input>
           </div>
-          <div class="form-group mx-5">
+          <div className="form-group mx-5">
             <label>Tittel:</label>
             <input
               type="text"
               name="overskrift"
               value={overskrift}
               onChange={this.changeHandler}
-              class="form-control"
+              className="form-control"
               placeholder="Skriv inn tittelen til din sak"
             ></input>
           </div>
-          <div class="form-group mx-5">
+          <div className="form-group mx-5">
             <label>Ingress:</label>
             <input
               type="text"
               name="ingress"
               value={ingress}
               onChange={this.changeHandler}
-              class="form-control"
+              className="form-control"
               placeholder="Skriv inn ingressen til din sak"
             ></input>
           </div>
-          <div class="form-group mx-5">
+          <div className="form-group mx-5">
             <label>Beskrivelse:</label>
             <textarea
               type="text"
               name="innhold"
-              class="form-control"
+              className="form-control"
               value={innhold}
               onChange={this.changeHandler}
               placeholder="Skriv inn det innholdet du ønsker vist i saken"
               rows="5"
             ></textarea>
           </div>
-          <div class="form-group mx-5">
+          <div className="form-group mx-5">
             <label>Bilde-URL:</label>
             <input
               type="text"
               name="bilde"
               value={bilde}
               onChange={this.changeHandler}
-              class="form-control"
+              className="form-control"
               placeholder="Skriv inn bilde-URL til din sak"
             ></input>
           </div>
           <div className="row">
-            <div class="form-group ml-5">
+            <div className="form-group ml-5">
               <label className="mr-2">Velg kategori:</label>
 
               <ButtonDropdown
@@ -235,7 +239,7 @@ export default class Register extends Component<
                 </DropdownMenu>
               </ButtonDropdown>
             </div>
-            <div class="form-group mx-3">
+            <div className="form-group mx-3">
               <label className="mr-2">Velg viktighet:</label>
 
               <ButtonDropdown
@@ -266,6 +270,8 @@ export default class Register extends Component<
     );
   }
 }
+
+// Sjekker kategori
 function checkCategory(category: string) {
   console.log(category.substring(0, 1));
   return category.substring(0, 1);

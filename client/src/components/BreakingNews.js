@@ -27,7 +27,7 @@ export default class BreakingNews extends Component<
   componentDidMount() {
     getBreakingNews()
       .then(response => {
-        this.setState({ news: response });
+        this.setState({ news: response.data });
         this.setState({ isLoaded: true });
       })
       .catch(error => {

@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/LiveFeed.css";
-import { getLiveFeedNews } from "../Service";
+import { getLiveFeedNews, stringifyDate, stringifyTime } from "../Service";
 
 export default class LiveFeed extends Component<
   {},
@@ -26,10 +26,11 @@ export default class LiveFeed extends Component<
     };
   }
 
+  // Henter de 5 siste nyhetene uansett viktighet
   componentDidMount() {
     getLiveFeedNews()
       .then((response: any) => {
-        this.setState({ news: response });
+        this.setState({ news: response.data });
         this.setState({ isLoaded: true });
       })
       .catch((error: any) => {
@@ -61,6 +62,7 @@ export default class LiveFeed extends Component<
   }
 }
 
+// Setter formatet på hvordan nyhetene skal bli vist
 function getLatestNews(news: {
   overskrift: string,
   sak_id: number,
@@ -77,27 +79,21 @@ function getLatestNews(news: {
   );
 }
 
-function stringifyDate(date: string) {
-  return date.slice(0, 10);
-}
-
-function stringifyTime(date: string) {
-  return date.slice(11, 16);
-}
-
+// Henter dagens dato og tid
 function getCurrentDate(separator: string = ".") {
   let newDate = new Date();
   let date = newDate.getDate();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
+  var time = newDate.getHours() + ":" + newDate.getMinutes();
 
   return (
-    <a className="text-white mr-5 my-auto">
+    <a className="text-white my-auto">
       {date}
       {separator}
       {month < 10 ? `0{month}` : `${month}`}
       {separator}
-      {year}
+      {year} {" - " + time}
     </a>
   );
 }

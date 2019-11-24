@@ -30,6 +30,7 @@ export default class Rating extends Component<
     };
   }
 
+  // Sjekker localStorage om man allerede har likt saken
   componentDidMount() {
     let disabled: boolean = false;
     let sak_id: number = this.state.sak_id;
@@ -43,6 +44,7 @@ export default class Rating extends Component<
     this.setState({ disabled: disabled });
   }
 
+  // Sender tommelOpp eller tommelNed til database
   submitHandler = (e: any) => {
     rateNews(this.state.sak_id, this.state)
       .then(response => {
@@ -55,6 +57,7 @@ export default class Rating extends Component<
       });
   };
 
+  // Setter state hvis man liker
   upVote = () => {
     let disabled: boolean = !this.state.disabled;
     let sak_id: number = this.state.sak_id;
@@ -73,6 +76,7 @@ export default class Rating extends Component<
     this.setState({ disabled: disabled });
   };
 
+  // Setter state hvis man disliker
   downVote = () => {
     let disabled: boolean = !this.state.disabled;
     let sak_id: number = this.state.sak_id;
@@ -119,6 +123,7 @@ export default class Rating extends Component<
   }
 }
 
+// Viser rating hvis en sak har blitt reagert på eller ikke
 function showRating(rating: string | null) {
   if (rating == null)
     return (
@@ -135,6 +140,7 @@ function showRating(rating: string | null) {
   }
 }
 
+// Viser antall likes eller dislikes
 function showLikes(likes: number) {
   if (likes == null) return 0;
   else return likes;

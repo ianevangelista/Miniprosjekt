@@ -75,8 +75,8 @@ export default class ArticleEdit extends Component<Props, State> {
   componentDidMount() {
     getAllCategories()
       .then(response => {
-        console.log(response);
-        this.setState({ categories: response });
+        console.log(response.data);
+        this.setState({ categories: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -107,6 +107,7 @@ export default class ArticleEdit extends Component<Props, State> {
       if (this.required()) {
         editNews(this.props.articleId, this.state)
           .then(response => {
+            console.log(response);
             alert("Saken er endret");
             window.location.reload();
           })
@@ -181,14 +182,14 @@ export default class ArticleEdit extends Component<Props, State> {
       <div className="my-3">
         {this.state.showInputForm && (
           <form onSubmit={this.editHandler}>
-            <div class="form-group">
+            <div className="form-group">
               <label>Skribent:</label>
               <input
                 type="text"
                 name="skribent"
                 value={skribent}
                 onChange={this.changeHandler}
-                class="form-control"
+                className="form-control"
                 placeholder="Ditt navn"
               ></input>
             </div>
@@ -199,46 +200,46 @@ export default class ArticleEdit extends Component<Props, State> {
                 name="overskrift"
                 value={overskrift}
                 onChange={this.changeHandler}
-                class="form-control"
+                className="form-control"
                 placeholder="Skriv inn tittelen til din sak"
               ></input>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label>Ingress:</label>
               <input
                 type="text"
                 name="ingress"
                 value={ingress}
                 onChange={this.changeHandler}
-                class="form-control"
+                className="form-control"
                 placeholder="Skriv inn ingressen til din sak"
               ></input>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label>Beskrivelse:</label>
               <textarea
                 type="text"
                 name="innhold"
-                class="form-control"
+                className="form-control"
                 value={innhold}
                 onChange={this.changeHandler}
                 placeholder="Skriv inn det innholdet du ønsker vist i saken"
                 rows="5"
               ></textarea>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label>Bilde-URL:</label>
               <input
                 type="text"
                 name="bilde"
                 value={bilde}
                 onChange={this.changeHandler}
-                class="form-control"
+                className="form-control"
                 placeholder="Skriv inn bilde-URL til din sak"
               ></input>
             </div>
             <div className="row">
-              <div class="form-group col-4">
+              <div className="form-group col-4">
                 <label>Velg kategori:</label>
                 <ButtonDropdown
                   className="ml-3"
@@ -254,7 +255,7 @@ export default class ArticleEdit extends Component<Props, State> {
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>
-              <div class="form-group col-4">
+              <div className="form-group col-4">
                 <label>Velg viktighet:</label>
                 <ButtonDropdown
                   className="ml-3"

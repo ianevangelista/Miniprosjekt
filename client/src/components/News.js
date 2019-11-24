@@ -33,7 +33,9 @@ export default class News extends Component<{
                 />
               </div>
               <div className="card-text">
-                <p className="h2 text-center mt-3 mx-3">{this.props.title}</p>
+                <p className="h2 text-center mt-3 mx-3 title-custom">
+                  {this.props.title}
+                </p>
               </div>
             </div>
             <p className="text-muted text-center my-3 mx-3">
@@ -55,6 +57,7 @@ export default class News extends Component<{
   }
 }
 
+// Viser rating til en nyhetssak. Viser bare hvis noen allerede har likt eller disliket en sak.
 function showRating(rating: string | null, up: number, down: number) {
   if (rating == null) return null;
   else {

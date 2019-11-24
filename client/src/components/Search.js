@@ -18,10 +18,12 @@ export default class Search extends Component<
     };
   }
 
+  // Håndterer klikk utenfor input
   handleBlur = () => {
     this.setState({ results: [] });
   };
 
+  // Henter inn alle sakene med samme overskrift som i input
   getInfo = () => {
     searchNews(this.state.query)
       .then((response: any) => {
@@ -32,8 +34,8 @@ export default class Search extends Component<
       });
   };
 
+  // Håndterer input-endring
   search: HTMLInputElement;
-
   handleInputChange = () => {
     this.setState(
       {
@@ -55,7 +57,7 @@ export default class Search extends Component<
     return (
       <form>
         <input
-          className="mt-4 rounded"
+          className="rounded my-2"
           placeholder="Søk etter sak"
           ref={(input: any) => (this.search = input)}
           onChange={this.handleInputChange}

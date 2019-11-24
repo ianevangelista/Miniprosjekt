@@ -41,6 +41,7 @@ export default class Category extends Component<
     };
   }
 
+  // Henter inn alle saker til en gitt kategori
   componentDidMount() {
     getCategory(this.props.match.params.id)
       .then((response: any) => {
@@ -87,6 +88,8 @@ export default class Category extends Component<
     }
   }
 }
+
+// Håndterer cards til saker
 function newsCard(news: {
   sak_id: number,
   overskrift: string,

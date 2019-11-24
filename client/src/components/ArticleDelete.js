@@ -15,6 +15,7 @@ export default class ArticleEdit extends Component<{
     if (window.confirm("Er du sikker?")) {
       deleteNews(this.props.articleId)
         .then(response => {
+          console.log(response);
           alert("Saken er slettet");
           window.location.hash = "/";
         })

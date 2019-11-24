@@ -3,7 +3,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const Suggestions = (props: { results: Array<{sak_id: string, overskrift: string}> }) => {
+// Forslag av saker som blir benyttet av Search
+const Suggestions = (props: {
+  results: Array<{ sak_id: string, overskrift: string }>
+}) => {
   const options: any = props.results.map(res => (
     <li>
       <NavLink

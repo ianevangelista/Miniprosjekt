@@ -39,7 +39,7 @@ export default class Footer extends Component<{}> {
                     <i class="fa fa-phone mr-3"></i> + 47 12345678
                   </p>
                   <p className="col-sm">
-                    <i class="fa fa-print mr-3"></i> + 47 12345678
+                    <i className="fa fa-print mr-3"></i> + 47 12345678
                   </p>
                 </div>
               </div>

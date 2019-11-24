@@ -17,11 +17,12 @@ export default class Navbar extends Component<
     };
   }
 
+  // Henter inn alle kategorier
   componentDidMount() {
     getAllCategories()
       .then((response: any) => {
-        console.log(response);
-        this.setState({ categories: response });
+        console.log(response.data);
+        this.setState({ categories: response.data });
       })
       .catch((error: any) => {
         console.log(error);
@@ -34,36 +35,36 @@ export default class Navbar extends Component<
     }> = this.state.categories;
     return (
       <nav
-        class="navbar py-0 navbar-expand-lg navbar-dark bg-primary sticky-top"
+        className="navbar py-0 navbar-expand-lg navbar-dark bg-primary sticky-top"
         role="navigation"
       >
-        <a class="navbar-brand">
+        <a className="navbar-brand">
           <NavLink className="nav-link" exact to="/">
             NTNEWS
           </NavLink>
         </a>
         <button
-          class="navbar-toggler collapsed"
+          className="navbar-toggler collapsed"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="nav navbar-nav">
-            <li class="nav-item custom-nav-text mr-4 my-auto">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="nav navbar-nav">
+            <li className="nav-item custom-nav-text mr-4 my-auto">
               <NavLink className="nav-link" exact to="/">
                 <a>FORSIDE</a>
               </NavLink>
             </li>
-            <li class="nav-item custom-nav-text mr-4 my-auto">
+            <li className="nav-item custom-nav-text mr-4 my-auto">
               <NavLink className="nav-link" exact to="/register">
                 <a>NY SAK</a>
               </NavLink>
             </li>
-            <li class="nav-item custom-nav-text mr-4 my-auto dropdown show">
+            <li className="nav-item custom-nav-text mr-4 my-auto dropdown show">
               <NavLink
                 className="nav-link dropdown-toggle"
                 exact
@@ -87,10 +88,11 @@ export default class Navbar extends Component<
   }
 }
 
+// Lister kategoriene som er hentet til linker som er drop-down items
 function getCategories(props: { kategori_id: number, kategori_navn: string }) {
   return (
     <NavLink
-      class="dropdown-item"
+      className="dropdown-item"
       onClick={() => {
         window.location.hash = "/kategori/" + props.kategori_id;
         window.location.reload();
