@@ -1,1 +1,0 @@
-web: nodemon ./server/src/server.js
