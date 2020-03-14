@@ -1,7 +1,9 @@
 {
   "name": "sysweb",
+  "homepage": "https://immense-bayou-51136.herokuapp.com",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/server.js",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -20,7 +22,7 @@
     ]
   },
   "scripts": {
-    "test": "jest"
+    "start": "node ./src/server.js"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
