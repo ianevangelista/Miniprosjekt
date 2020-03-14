@@ -21,8 +21,7 @@
     ]
   },
   "scripts": {
-    "test": "jest",
-    "prepublish": "npm run build"
+    "test": "jest"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
