@@ -41,5 +41,8 @@
       "json",
       "html"
     ]
+  },
+  "engines": {
+    "node": "10.16.0"
   }
 }
