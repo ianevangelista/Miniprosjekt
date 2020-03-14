@@ -88,7 +88,7 @@ function getCurrentDate(separator: string = ".") {
   var time =
     newDate.getHours() +
     ":" +
-    (newDate.getMinutes().length != 1
+    (newDate.getMinutes().length == 1
       ? "0" + newDate.getMinutes()
       : newDate.getMinutes());
 
@@ -96,7 +96,7 @@ function getCurrentDate(separator: string = ".") {
     <a className="text-white my-auto">
       {date}
       {separator}
-      {month < 10 ? `0{month}` : `${month}`}
+      {month > 10 ? `0{month}` : `${month}`}
       {separator}
       {year} {" - " + time}
     </a>
