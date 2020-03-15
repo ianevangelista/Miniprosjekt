@@ -8,13 +8,13 @@ const CategoryDao = require("../dao/categorydao");
 const CommentDao = require("../dao/commentdao");
 require("dotenv").config();
 var port = process.env.PORT || 8000;
-
+app.use(express.static("public"));
 var pool = mysql.createPool({
   connectionLimit: 2,
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
-  database: "iaevange",
+  database: process.env.DATABASE_DATABASE,
   debug: false
 });
 
@@ -24,5 +24,5 @@ let commentDao = new CommentDao(pool);
 
 require("./router")(app, pool, newsDao, categoryDao, commentDao);
 app.listen(port, function() {
-  console.log("info", "Server is running at port : " + 8000);
+  console.log("info", "Server is running at port : " + port);
 });
