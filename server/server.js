@@ -1,14 +1,15 @@
 const express = require("express");
 const mysql = require("mysql");
 const app = express();
+var cors = require("cors");
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
+app.use(cors());
 const NewsDao = require("./dao/newsdao");
 const CategoryDao = require("./dao/categorydao");
 const CommentDao = require("./dao/commentdao");
 require("dotenv").config();
 var port = process.env.PORT || 8000;
-app.use(express.static("public"));
 var pool = mysql.createPool({
   connectionLimit: 2,
   host: process.env.DATABASE_HOST,
