@@ -1,8 +1,4 @@
 module.exports = function(app, pool, newsDao, categoryDao, commentDao) {
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
-    next();
-  });
 
   // Henter ut alle sakene med viktighet 1
   app.get("/", (req, res) => {
