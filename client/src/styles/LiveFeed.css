@@ -85,3 +85,8 @@
 .livefeed-text {
   font-size: 1.4vw;
 }
+@media only screen and (max-width: 600px) {
+  .livefeed-text {
+    font-size: 2.4vw;
+  }
+}
